@@ -126,6 +126,6 @@ django_heroku.settings(locals())
 
 # try to load local_settings.py if it exists
 try:
-  from local_settings import *
-except Exception as e:
+  from pure_beurre.local_settings import *
+except ImportError:
   pass

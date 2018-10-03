@@ -1,1 +1,0 @@
-from pure_beurre.settings import *
