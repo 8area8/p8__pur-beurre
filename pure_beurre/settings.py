@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_apps.djangowebpack',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +128,23 @@ django_heroku.settings(locals())
 
 # try to load local_settings.py if it exists
 try:
-  from pure_beurre.local_settings import *
+    from pure_beurre.local_settings import *
 except ImportError:
-  pass
+    pass
+
+# WEBPACK CONFIG
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'webpack_bundles/',  # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}
+
+PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
+STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')

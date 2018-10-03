@@ -9,11 +9,13 @@ gunicorn = "*"
 django-heroku = "*"
 celery = "*"
 redis = "*"
+django-webpack-loader = "*"
 
 [dev-packages]
 pylint = "*"
 pydocstyle = "*"
 "flake8" = "*"
+"autopep8" = "*"
 
 [requires]
 python_version = "3.6"

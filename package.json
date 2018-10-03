@@ -1,0 +1,26 @@
+{
+  "name": "P8",
+  "version": "1.0.0",
+  "description": "installation du serveur redis: https://github.com/MicrosoftArchive/redis/releases (msi version) - à activer depuis le gestionnaire des tâches. port par défaut: port 6379",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8area8/p8_pure_beurre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8area8/p8_pure_beurre/issues"
+  },
+  "homepage": "https://github.com/8area8/p8_pure_beurre#readme",
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-bundle-tracker": "^0.3.0",
+    "webpack-cli": "^3.1.2"
+  }
+}
