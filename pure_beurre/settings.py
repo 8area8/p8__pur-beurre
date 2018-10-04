@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # PLUGINS
+    # DJANGO PLUGINS
     'webpack_loader',
     # PERSONNAL APPS
     'django_apps.test_index',
