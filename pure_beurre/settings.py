@@ -10,12 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
+from pathlib import Path
+import importlib
 
 import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path().resolve()
 
 
 # Quick-start development settings - unsuitable for production
@@ -126,25 +128,26 @@ STATIC_URL = '/static/'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-# try to load local_settings.py if it exists
-try:
-    from pure_beurre.local_settings import *
-except ImportError:
-    pass
-
 # WEBPACK CONFIG
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'webpack_bundles/',  # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'STATS_FILE': Path(BASE_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
     }
 }
 
-PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
-STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
+PUBLIC_DIR = Path(BASE_DIR, 'public')
+STATIC_ROOT = Path(PUBLIC_DIR, 'static')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')
+MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
+
+# LOCAL SETTINGS
+try:
+    django_local = importlib.import_module("pure_beurre.local_settings")
+    django_local.settings(locals())
+except ImportError:
+    pass

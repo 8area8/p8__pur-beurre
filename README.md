@@ -27,6 +27,8 @@ http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 https://gearheart.io/blog/how-to-deploy-a-django-application-on-heroku/
 
 
+#slugignore
+https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
 --------
 
 - pipfile et pipfile.lock = pipenv

@@ -7,7 +7,7 @@ module.exports = {
     entry: './django_apps/djangowebpack/static/js/index.js',
     output: {
         path: path.resolve('./django_apps/djangowebpack/static/webpack_bundles/'),
-        filename: "[name]-[hash].js"
+        filename: "[name].js"
     },
 
     plugins: [
