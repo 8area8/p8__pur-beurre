@@ -127,27 +127,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+# STATIC FILES CONFIG
+STATIC_URL = '/static/'
+STATIC_ROOT = Path(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = (
+   Path(BASE_DIR, 'assets'),
+)
+PUBLIC_DIR = Path(BASE_DIR, 'public')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = print(Path(PUBLIC_DIR, 'media'))
 
 # WEBPACK CONFIG
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'webpack_bundles/',  # must end with slash
+        'BUNDLE_DIR_NAME': 'bundles/',  # must end with slash
         'STATS_FILE': Path(BASE_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    },
+    'DASHBOARD': {
+        'BUNDLE_DIR_NAME': 'dashboard_bundles/',
+        'STATS_FILE': Path(BASE_DIR, 'webpack-stats-dashboard.json'),
     }
 }
-
-PUBLIC_DIR = Path(BASE_DIR, 'public')
-STATIC_ROOT = Path(PUBLIC_DIR, 'static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
 
 # LOCAL SETTINGS
 try:

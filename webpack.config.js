@@ -4,9 +4,11 @@ var BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
     context: __dirname,
-    entry: './django_apps/djangowebpack/static/js/index.js',
+    entry: {'index': './django_apps/djangowebpack/static/default/js/index.js',
+        'dashboard_bundles/index': './django_apps/djangowebpack/static/dashboard/js/index.js'
+    },
     output: {
-        path: path.resolve('./django_apps/djangowebpack/static/webpack_bundles/'),
+        path: path.resolve('./assets/bundles'),
         filename: "[name].js"
     },
 

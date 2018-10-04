@@ -3,5 +3,4 @@
 package.json
 package-lock.json
 
-**/js/
-**/css/
+**/dev/
