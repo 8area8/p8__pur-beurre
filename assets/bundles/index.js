@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./django_apps/djangowebpack/static/default/js/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/dev/default/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./django_apps/djangowebpack/static/default/js/index.js":
-/*!**************************************************************!*\
-  !*** ./django_apps/djangowebpack/static/default/js/index.js ***!
-  \**************************************************************/
+/***/ "./assets/dev/default/js/index.js":
+/*!****************************************!*\
+  !*** ./assets/dev/default/js/index.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("document.addEventListener(\"DOMContentLoaded\", function (event) {\n    //do work\n    var body = document.querySelector(\"body\");\n    body.innerHTML = \"<p>Hello world</p>\";\n});\n\n//# sourceURL=webpack:///./django_apps/djangowebpack/static/default/js/index.js?");
+eval("document.addEventListener(\"DOMContentLoaded\", function (event) {\n    //do work\n    var body = document.querySelector(\"body\");\n    body.innerHTML = \"<p>Hello world</p>\";\n});\n\n//# sourceURL=webpack:///./assets/dev/default/js/index.js?");
 
 /***/ })
 

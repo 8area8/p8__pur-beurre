@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./django_apps/djangowebpack/static/dashboard/js/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/dev/dashboard/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./django_apps/djangowebpack/static/dashboard/js/index.js":
-/*!****************************************************************!*\
-  !*** ./django_apps/djangowebpack/static/dashboard/js/index.js ***!
-  \****************************************************************/
+/***/ "./assets/dev/dashboard/js/index.js":
+/*!******************************************!*\
+  !*** ./assets/dev/dashboard/js/index.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./django_apps/djangowebpack/static/dashboard/js/index.js?");
+eval("\n\n//# sourceURL=webpack:///./assets/dev/dashboard/js/index.js?");
 
 /***/ })
 

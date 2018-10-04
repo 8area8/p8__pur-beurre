@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_apps.djangowebpack',
+    # PLUGINS
     'webpack_loader',
+    # PERSONNAL APPS
+    'django_apps.test_index',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +136,7 @@ django_heroku.settings(locals())
 STATIC_URL = '/static/'
 STATIC_ROOT = Path(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (
-   Path(BASE_DIR, 'assets'),
+    Path(BASE_DIR, 'assets'),
 )
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
