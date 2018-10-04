@@ -3,5 +3,5 @@
 package.json
 package-lock.json
 
-**/static/*
-!*/static/webpack_bundles/
+**/js/
+**/css/
