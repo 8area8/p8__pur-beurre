@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/8area8/p8_pure_beurre#readme",
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "prettier-eslint": "^8.8.2",
     "webpack": "^4.20.2",
     "webpack-bundle-tracker": "^0.3.0",
     "webpack-cli": "^3.1.2"

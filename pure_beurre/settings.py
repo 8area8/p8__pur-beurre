@@ -149,10 +149,6 @@ WEBPACK_LOADER = {
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
-    },
-    'DASHBOARD': {
-        'BUNDLE_DIR_NAME': 'dashboard_bundles/',
-        'STATS_FILE': Path(BASE_DIR, 'webpack-stats-dashboard.json'),
     }
 }
 
