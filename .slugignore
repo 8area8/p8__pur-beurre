@@ -6,5 +6,5 @@ package-lock.json
 webpack-stats.json
 webpack.conf.json
 
-**/static/
+**/static/*
 !*/static/webpack_bundles/
