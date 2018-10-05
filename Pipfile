@@ -10,6 +10,7 @@ django-heroku = "*"
 celery = "*"
 redis = "*"
 django-webpack-loader = "*"
+eventlet = "*"
 
 [dev-packages]
 pylint = "*"

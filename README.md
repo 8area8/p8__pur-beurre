@@ -2,6 +2,10 @@ installation du serveur redis: https://github.com/MicrosoftArchive/redis/release
 - à activer depuis le gestionnaire des tâches.
 port par défaut: port 6379
 
+- celery pour le management des tasks.
+- eventlet pour faire tourner celery sur windows.
+- celery -A your_app_name worker --pool=eventlet
+
 
 - créer une première vue.
 - configurer reddis en local
