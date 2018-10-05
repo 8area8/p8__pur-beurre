@@ -154,6 +154,14 @@ WEBPACK_LOADER = {
     }
 }
 
+# CELERY CONFIG
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+
 # LOCAL SETTINGS
 try:
     django_local = importlib.import_module("pure_beurre.local_settings")

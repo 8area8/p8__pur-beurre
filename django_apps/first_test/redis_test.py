@@ -1,5 +1,3 @@
-from collections import Counter
-
 from celery import Celery
 
 # Configuration de celery. Ceci peut aussi se faire dans un fichier de config.
