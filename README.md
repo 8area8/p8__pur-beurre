@@ -41,3 +41,28 @@ https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
 - node_modules = npm
 
 - pure_beurre + django_apps = django
+
+
+-----
+
+How I configured my local_setting.py :
+```python
+def settings(config):
+    """Modify the base configuration."""
+    config["DEBUG"] = True
+    config["TEMPLATE_DEBUG"] = True
+
+    config["DATABASES"] = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'your_database_name',
+            'USER': "postgres",
+            'PASSWORD': 'your_password',
+            'HOST': '127.0.0.1',
+            'PORT': '5432'
+        }
+    }
+
+    config["CELERY_BROKER_URL"] = 'redis://localhost:6379/0'
+    config["CELERY_RESULT_BACKEND"] = 'redis://localhost:6379/0'
+```
