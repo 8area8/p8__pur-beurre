@@ -44,6 +44,13 @@ https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
 - pure_beurre + django_apps = django
 
 
+---
+JS PACKAGES:
+
+-scroll reveal (ScrollReveal({reset: true}).reveal('.headline');)
+https://scrollrevealjs.org/guide/customization.html, https://github.com/scrollreveal/scrollreveal
+
+
 -----
 
 How I configured my local_setting.py :
@@ -79,3 +86,4 @@ def settings(config):
 CREDITS
 
 Photo by Olenka Kotyk on Unsplash
+Carrot by Fabien Jouin from the Noun Project

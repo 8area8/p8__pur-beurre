@@ -1,4 +1,9 @@
+// JS INDEX
+
 import '../css/styles.scss'
+
+var $ = require('jQuery');
+
 
 document.addEventListener("DOMContentLoaded", function (event) {
     // BASE TEST
