@@ -45,6 +45,8 @@ https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
 
 
 ---
+JS ANIMATION: https://github.com/legomushroom/mojs
+
 JS PACKAGES:
 
 -scroll reveal (ScrollReveal({reset: true}).reveal('.headline');)
