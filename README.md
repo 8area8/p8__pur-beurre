@@ -66,3 +66,18 @@ def settings(config):
     config["CELERY_BROKER_URL"] = 'redis://localhost:6379/0'
     config["CELERY_RESULT_BACKEND"] = 'redis://localhost:6379/0'
 ```
+
+----
+4 serveurs à lancer:
+- l'app django
+- le serveur postgres
+- le serveur redis
+- le serveur celery
+
+
+ACTUAL:
+En plein bug, je dois:
+- comprendre template view pour bien enovyer ma variable
+- arriver à la charger en JS
+- pouvoir l'utiliser et afficher ce que je veux
+- voir si tout fonctionne bien en prod.

@@ -1,3 +1,8 @@
 {% load render_bundle from webpack_loader %}
 
+<script>
+    // Loading the data for use in JS components here
+    window.func_celery = '{% url "celery" %}';
+</script>
+
 {% render_bundle 'index' 'js' 'DEFAULT' %}

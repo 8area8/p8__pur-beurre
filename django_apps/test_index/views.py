@@ -4,11 +4,14 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 
+from django.conf import settings
+
 from . import tasks
 
 
 class HomeView(TemplateView):
     """Home view."""
+
     template_name = "home.html"
 
 

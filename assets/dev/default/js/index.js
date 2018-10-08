@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 if (httpRequest.status === 200) {
                     content = JSON.parse(httpRequest.responseText).resp;
                     divChild = document.createElement('div');
-                    divChild.innerHTML = content
+                    divChild.innerHTML = content;
                     body.appendChild(divChild);
                 }
             }
         }
-        httpRequest.open("GET", "http://127.0.0.1:8000/celery");
+        httpRequest.open("GET", window.func_celery);
         httpRequest.send();
     }
 
