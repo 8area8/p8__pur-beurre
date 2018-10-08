@@ -1,12 +1,54 @@
-{% load render_bundle from webpack_loader %}
+<!doctype html>
+<html lang="fr">
 
-<!-- POLICES -->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script>
-    // Loading the data for use in JS components here
-    window.func_celery = '{% url "celery" %}';
-</script>
+    <!-- POLICES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
 
-{% render_bundle 'index' 'js' 'DEFAULT' %}
+
+    <title></title>
+</head>
+
+<body>
+
+
+    {% load render_bundle from webpack_loader %}
+
+    <script>
+        // Loading the data for use in JS components here
+        window.func_celery = '{% url "celery" %}';
+    </script>
+
+    {% render_bundle 'index' 'js' 'DEFAULT' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                1 of 2
+            </div>
+            <div class="col">
+                2 of 2
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                1 of 3
+            </div>
+            <div class="col">
+                2 of 3
+            </div>
+            <div class="col">
+                3 of 3
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

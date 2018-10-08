@@ -1,14 +1,14 @@
 // JS INDEX
 
-import '../css/styles.scss'
-
 var $ = require('jQuery');
+import 'bootstrap'
+
+import '../css/styles.scss'
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
     // BASE TEST
     var body = document.querySelector("body");
-    body.innerHTML = "<p>Hello world ok?</p>";
 
     // HTTPREQUEST
     var httpRequest;
@@ -32,7 +32,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     // BUTTON AN BUTTON-EVENT
-    body.innerHTML += "<button class='celery'>celery event</button>";
+    var button = document.createElement('button');
+    button.innerHTML = 'celery event';
+    button.classList.add('celery');
+    body.appendChild(button);
     var celery = document.getElementsByClassName('celery')[0];
     celery.addEventListener('click', (event) => {
         newcelery();
