@@ -30,6 +30,7 @@ http://flaviusim.com/blog/AJAX-Autocomplete-Search-with-Django-and-jQuery/
 http://sametmax.com/files-de-taches-et-taches-recurrentes-avec-celery/
 http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 https://gearheart.io/blog/how-to-deploy-a-django-application-on-heroku/
+- celery heroku issue: https://stackoverflow.com/questions/12013220/celery-creating-a-new-connection-for-each-task
 
 
 #slugignore
