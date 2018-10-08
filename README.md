@@ -76,9 +76,6 @@ def settings(config):
 - le serveur celery
 
 
-ACTUAL:
-En plein bug, je dois:
-- comprendre template view pour bien enovyer ma variable
-- arriver à la charger en JS
-- pouvoir l'utiliser et afficher ce que je veux
-- voir si tout fonctionne bien en prod.
+CREDITS
+
+Photo by Olenka Kotyk on Unsplash
