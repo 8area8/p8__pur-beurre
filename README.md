@@ -52,6 +52,8 @@ JS PACKAGES:
 -scroll reveal (ScrollReveal({reset: true}).reveal('.headline');)
 https://scrollrevealjs.org/guide/customization.html, https://github.com/scrollreveal/scrollreveal
 
+webpack config output property, for django_webpack statics:
+- publicPath: '/static/bundles/'
 
 -----
 

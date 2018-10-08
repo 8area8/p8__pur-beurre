@@ -3,7 +3,8 @@
 var $ = require('jQuery');
 import 'bootstrap'
 
-import '../css/styles.scss'
+
+import './styles.scss';
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
