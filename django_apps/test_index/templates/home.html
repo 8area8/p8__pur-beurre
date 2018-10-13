@@ -18,40 +18,36 @@
 </head>
 
 <body>
-    {% load render_bundle from webpack_loader %}
     {% load webpack_static from webpack_loader %}
-
-
-    <script>
-        // Loading the data for use in JS components here
-        window.func_celery = '{% url "celery" %}';
-    </script>
-
-    {% render_bundle 'index' 'js' 'DEFAULT' %}
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{% webpack_static 'logo.png' %}" alt="Smiley face"
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{% webpack_static 'logo.png' %}" alt="Logo"
                     height="42" width="42"> Pure Beurre</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navBarToogle"
+                aria-controls="navBarToogle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+
+            <div class="collapse navbar-collapse" id="navBarToogle">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">chercher</a>
+                        <a class="nav-link js-scroll-trigger" href="#logo-search" id="logo-search">chercher</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#services"><i class="material-icons-new icon-white twotone-account_circle"></i></a>
+                        <a class="nav-link js-scroll-trigger" href="#logo-account" id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio"><img class="icon-white" src="{% webpack_static 'carrot.png' %}"
-                                alt="my aliments" height="38" width="38"></a>
+                        <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"
+                                src="{% webpack_static 'carrot.png' %}" alt="my aliments" height="38" width="38"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contact"><i class="material-icons-new icon-white twotone-exit_to_app"></i></a>
+                        <a class="nav-link js-scroll-trigger" href="#logo-exit" id="logo-deconexion"><i class="nav-icon material-icons-new icon-white twotone-exit_to_app"></i></a>
                     </li>
                 </ul>
             </div>
@@ -70,35 +66,109 @@
                 <div class="col-lg-8 mx-auto">
                     <h2 class="text-faded mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous
                         les jours.</h2>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+
+                    <!-- BUTTON RESEARCH -->
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Exemple: Kinder bueno" aria-label="Exemple: Kinder bueno">
+                        <div class="input-group-append">
+                            <a class="input-group-text a-style right-rounded disabled" href="#"><i class="material-icons-new icon-white twotone-get_app"></i></a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                1 of 2
-            </div>
-            <div class="col">
-                2 of 2
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                2 of 3
-            </div>
-            <div class="col">
-                3 of 3
-            </div>
-        </div>
-    </div>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-heading">Colette et Remy</h2>
+                    <hr class="my-4">
+                    <p class="mb-4">Nous sommes une jeune startup fondée par Remy et Colette Tatou, deux
+                        restaurateurs de renom. Notre restaurant, situé à
+                        Montmartre (Paris), compte une cinquantaine de couverts et ne désemplit pas. Notre spécialité,
+                        la ratatouille, nous
+                        attire une clientèle internationale charmée par les délices de ce plat typique.<br><br>
 
+                        Remy et Colette sont amoureux de la gastronomie française (on ne peut les blâmer !).
+                        Travaillant quotidiennement avec
+                        les meilleurs produits du terroir, ils affectionnent particulièrement la bonne chaire et aiment
+                        partager leur passion.
+                        Il est donc normal que Remy ait sauté au plafond quand Colette, un jour de déprime, sortit du
+                        placard un kilo de
+                        Nutella et l’attaqua à la petite cuillère. Pourquoi ne pas opter pour une pâte à tartiner aux
+                        noisettes, plus
+                        consistante et moins sucrée ? Pourquoi, oh pourquoi s’infliger une telle souffrance ? Rémy
+                        était sidéré. La réponse de
+                        Colette fut simple : elle n’avait pas trouvé de substitut assez convainquant. A vrai dire, elle
+                        n’avait même pas
+                        cherché.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 col-sm-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <img class="img-colette img-fluid mb-3" src="{% webpack_static 'colette.jpg' %}" alt="colette">
+                        <h3 class="text-colette mb-3">Colette</h3>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <img class="img-remy img-fluid mb-3" src="{% webpack_static 'remy.jpg' %}" alt="remy">
+                        <h3 class="text-remy mb-3">Remy</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-heading text-white">Contactez nous!</h2>
+                    <hr class="light my-4">
+                    <p class="mb-5 text-faded">Une question, un renseignement?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="contact-phone col-lg-4 ml-auto text-center">
+                    <i class="material-icons-new icon-white twotone-phone"></i>
+                    <p class="text-white">123-456-6789</p>
+                </div>
+                <div class="contact-mail col-lg-4 mr-auto text-center">
+                    <i class="material-icons-new icon-white twotone-alternate_email"></i>
+                    <p>
+                        <a class="text-white" href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="page-footer font-small footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center">
+                    <a class="nav-link text-white" href='#'">Mentions legales</a>
+                </div>
+                <div class="
+                        col-lg-4 mr-auto text-center">
+                        <a class="nav-link text-white" href='#contact'">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'index' 'js' %}
 
 </body>
-
 </html>

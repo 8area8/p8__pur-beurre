@@ -91,3 +91,8 @@ CREDITS
 
 Photo by Olenka Kotyk on Unsplash
 Carrot by Fabien Jouin from the Noun Project
+
+ICONS
+
+https://material.io/tools/icons/?icon=exit_to_app&style=twotone
+- <i class="material-icons-new icon-white twotone-account_circle"></i>

@@ -1,25 +1,27 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
-$rooibos: #C45525;
-$sea: #345A61;
-$sky: #86EBE6;
-$caramel: #DE9440;
-$biscuit: #E8A75D;
+@import "scss/variables.scss";
+@import "scss/mixins.scss";
+@import "scss/global.scss";
+@import "scss/navbar.scss";
+@import "scss/masthead.scss";
+@import "scss/services.scss";
+@import "scss/portfolio.scss";
+@import "scss/bootstrap-overrides.scss";
 
-body {
-    font-family: "Scope One", sans-serif;
-}
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", sans-serif;
-}
 
+// MATERIAL ICONS
 .material-icons-new {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 38px;
+    height: 38px;
     background-repeat: no-repeat;
     background-size: contain;
+    @include transition-all;
+  &:hover {
+    color: $primary;
+  }
 }
 .icon-white {
     webkit-filter: contrast(2) invert(1);
@@ -30,135 +32,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@mixin transition-all() {
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
-}
-// Styling for the navbar
-#mainNav {
-  border-bottom: 1px solid fade-out($gray-900, .9);
-  background-color: $white;
-  @include transition-all;
-  .navbar-brand {
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $primary;
-    &:focus,
-    &:hover {
-      color: darken($primary, .1);
-    }
-  }
-  .navbar-nav {
-    > li.nav-item {
-       > a.nav-link,
-      > a.nav-link:focus {
-        font-size: .9rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: $gray-900;
-        &:hover {
-          color: $primary;
-        }
-        &.active {
-          color: $primary !important;
-          background-color: transparent;
-          &:hover {
-            background-color: transparent;
-          }
-        }
-      }
-    }
-  }
-  @media (min-width: 992px) {
-    border-color: transparent;
-    background-color: transparent;
-    .navbar-brand {
-      color: fade-out($white, .3);
-      &:focus,
-      &:hover {
-        color: $white;
-      }
-    }
-    .navbar-nav > li.nav-item > a.nav-link {
-      padding: 0.5rem 1rem;
-    }
-    .navbar-nav > li.nav-item > a.nav-link,
-    .navbar-nav > li.nav-item > a.nav-link:focus {
-      color: fade-out($white, .3);
-      &:hover {
-        color: $white;
-      }
-    }
-    &.navbar-shrink {
-      border-bottom: 1px solid fade-out($gray-900, .9);
-      background-color: $white;
-      .navbar-brand {
-        color: $primary;
-        &:focus,
-        &:hover {
-          color: darken($primary, .1);
-        }
-      }
-      .navbar-nav > li.nav-item > a.nav-link,
-      .navbar-nav > li.nav-item > a.nav-link:focus {
-        color: $gray-900;
-        &:hover {
-          color: $primary;
-        }
-      }
-    }
-  }
-}
-.nav-item {
 
+.nav-item {
     // PERSONNAL ADD
     display: flex;
     align-items: center;
 }
 
 
-
-@mixin background-cover() {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.right-rounded {
+  border-top-right-radius: 20% !important;
+  border-bottom-right-radius: 20% !important;
 }
-// Styling for the masthead
-header.masthead {
-    padding-top: 10rem;
-    padding-bottom: calc(10rem - 56px);
-    background-image: url("./imgs/header.jpg");
-    background-position: center center;
-    @include background-cover;
-  hr {
-    margin-top: 30px;
-    margin-bottom: 30px;
+.a-style {
+    background-color: $sea;
+  color: $gray-300;
+  @include transition-all;
+  &:hover {
+    color: $white;
   }
-  h1 {
-    font-size: 2rem;
-  }
-  p {
-    font-weight: 300;
-  }
-  @media (min-width: 768px) {
-    p {
-      font-size: 1.15rem;
-    }
-  }
-  @media (min-width: 992px) {
-    height: 100vh;
-    min-height: 650px;
-    padding-top: 0;
-    padding-bottom: 0;
-    h1 {
-      font-size: 3rem;
-    }
-  }
-  @media (min-width: 1200px) {
-    h1 {
-      font-size: 4rem;
-    }
-  }
+  border: none;
+
+}
+
+#contact {
+    background-color: $primary;
+}
+
+.footer {
+    background-color: $gray-900;
+    padding: 3% 0% 3% 0%;
+    @include sans-serif-font;
 }

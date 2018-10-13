@@ -1,14 +1,16 @@
 // JS INDEX
 
-var $ = require('jQuery');
-import 'bootstrap'
-
-
 import './styles.scss';
 
+import 'bootstrap';
+var $ = require('jquery');
 
-document.addEventListener("DOMContentLoaded", function (event) {
-    // BASE TEST
+
+import './js/creative.js';
+import './js/logonav.js';
+
+
+function celeryTest() {
     var body = document.querySelector("body");
 
     // HTTPREQUEST
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         httpRequest.send();
     }
 
-    // BUTTON AN BUTTON-EVENT
+    // BUTTON A BUTTON-EVENT
     var button = document.createElement('button');
     button.innerHTML = 'celery event';
     button.classList.add('celery');
@@ -41,4 +43,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
     celery.addEventListener('click', (event) => {
         newcelery();
     })
-});
+}
