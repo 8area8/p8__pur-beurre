@@ -50,6 +50,10 @@ https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
 
 - pure_beurre + django_apps = django
 
+# Autocomplete:
+https://www.npmjs.com/package/jquery-autocomplete
+https://xdsoft.net/jqplugins/autocomplete/
+
 
 ---
 JS ANIMATION: https://github.com/legomushroom/mojs

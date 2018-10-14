@@ -70,7 +70,8 @@
 
                     <!-- BUTTON RESEARCH -->
                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Exemple: Kinder bueno" aria-label="Exemple: Kinder bueno">
+                        <input type="text" class="form-control autocomplete" placeholder="Exemple: Kinder bueno"
+                            aria-label="Exemple: Kinder bueno" data-autocomplete="/autocomplete/ajax_product_names">
                         <div class="input-group-append">
                             <a class="input-group-text a-style right-rounded disabled" href="#"><i class="material-icons-new icon-white twotone-search"></i></a>
                         </div>
@@ -167,7 +168,7 @@
         </div>
     </footer>
 
-
+<script>window.product_names_url = `/autocomplete/ajax_product_names`</script>
 {% load render_bundle from webpack_loader %}
 {% render_bundle 'index' 'js' %}
 

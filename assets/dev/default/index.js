@@ -3,11 +3,10 @@
 import './styles.scss';
 
 import 'bootstrap';
-var $ = require('jquery');
-
 
 import './js/creative.js';
 import './js/logonav.js';
+import './js/autocomplete.js';
 
 
 function celeryTest() {
