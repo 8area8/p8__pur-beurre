@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # DJANGO PLUGINS
     'webpack_loader',
     # PERSONNAL APPS
-    'django_apps.test_index',
+    'django_apps.index',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +164,9 @@ if not DEBUG:
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
+
+# REDIS CONFIG
+REDIS_URL = os.getenv('REDIS_URL')
 
 # LOCAL SETTINGS
 try:

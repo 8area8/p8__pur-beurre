@@ -32,6 +32,13 @@ http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 https://gearheart.io/blog/how-to-deploy-a-django-application-on-heroku/
 - celery heroku issue: https://stackoverflow.com/questions/12013220/celery-creating-a-new-connection-for-each-task
 
+COMMAND REDIS:
+- redis_object.info()["used_memory"]
+- retourne une valeur en bytes.
+
+- redis_obj.scard("product_names")
+- retourne la longueur du set.
+
 
 #slugignore
 https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-

@@ -11,6 +11,7 @@ celery = "*"
 redis = "*"
 django-webpack-loader = "*"
 eventlet = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"
