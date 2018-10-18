@@ -2,6 +2,17 @@ var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+
+// the path(s) that should be cleaned
+let pathsToClean = [
+    "./assets/bundles"
+]
+// the clean options to use
+let cleanOptions = {
+}
+
 
 module.exports = {
     context: __dirname,
@@ -49,6 +60,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        })
+        }),
+        new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
 }
