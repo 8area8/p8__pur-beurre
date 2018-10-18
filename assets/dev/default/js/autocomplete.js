@@ -1,6 +1,7 @@
 import '../../vendor/autocomplete/jquery-ui.scss';
 import '../../vendor/autocomplete/jquery-ui.js';
 
+var autocomplete_valuesOne = [];
 
 function getCookie(name) {
     var cookieValue = null;
@@ -23,21 +24,87 @@ $.ajaxSetup({
     }
 });
 
-$('input').autocomplete({
-    source: function (req, response) { // les deux arguments représentent les données nécessaires au plugin
+$('#input1').autocomplete({
+    source: function (req, response) {
         $.ajax({
             type: "POST",
-            url: window.product_names_url, // on appelle le script JSON
-            dataType: 'json', // on spécifie bien que le type de données est en JSON
+            url: window.product_names_url,
+            dataType: 'json',
             data: {
-                starts_with: $('#input').val(), // on donne la chaîne de caractère tapée dans le champ de recherche
+                starts_with: $('#input1').val(),
                 max_len: 15
             },
 
             success: function (datas) {
                 console.log("success")
-                response(datas.names)
+                autocomplete_valuesOne = datas.names;
+                response(datas.names);
+            }
+        });
+    },
+    // change: function (event, ui) {
+    //     var input = $('#input1');
+    //     if (autocomplete_valuesOne.includes(input.val())) {
+    //         $("#inputbutton").removeAttr("disabled");
+    //     } else {
+    //         $("#inputbutton").attr("disabled", true);
+    //     }
+    // }
+});
+$("#input1").on("change paste autocompleteselect input", function () {
+    console.log("in 'change' function.")
+    var input = $('#input1');
+    if (autocomplete_valuesOne.includes(input.val())) {
+        $("#inputbutton").removeAttr("disabled");
+    } else {
+        $("#inputbutton").attr("disabled", true);
+    }
+});
+
+var autocomplete_valuesTwo = [];
+
+$('#logo-search').autocomplete({
+    source: function (req, response) {
+        $.ajax({
+            type: "POST",
+            url: window.product_names_url,
+            dataType: 'json',
+            data: {
+                starts_with: $('#logo-search').val(),
+                max_len: 15
+            },
+
+            success: function (datas) {
+                console.log("success")
+                autocomplete_valuesTwo = datas.names;
+                response(datas.names);
             }
         });
     }
+    // search: function (event, ui) {
+    //     var input = $('#logo-search');
+    //     if (autocomplete_values2.includes(input.val())) {
+    //         Console.log("on peut chercher oui");
+    //     } else {
+    //         $("#logo-search").popover();
+    //     }
+    // }
 });
+$('#logo-search').keyup(function checkValueBeforeRequest(e) {
+    if (e.keyCode == 13) {
+        var input = $('#logo-search');
+        if (autocomplete_valuesTwo.includes(input.val())) {
+            console.log("on peut chercher oui");
+        } else {
+            console.log("Non.");
+        }
+    }
+});
+
+function inputIsName(input, names) {
+    if (names.includes(input.val())) {
+        input.prop("disabled", false);
+    } else {
+        input.prop("disabled", true);
+    }
+}

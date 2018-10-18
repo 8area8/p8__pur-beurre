@@ -25,13 +25,13 @@
     -o-filter: contrast(2) invert(1);
     -ms-filter: contrast(2) invert(1);
     filter: contrast(2) invert(1);
-    &:hover {
+    &:hover:enabled {
       filter: contrast(2) invert(1) blur(1px) !important;
     }
 }
 .nav-icon {
   @include transition-all;
-  &:hover {
+  &:hover:enabled {
     filter: blur(1px);
   }
 }
@@ -67,4 +67,16 @@
     background-color: $gray-900;
     padding: 3% 0% 3% 0%;
     @include sans-serif-font;
+}
+
+a:disabled,
+a[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
+}
+i:disabled,
+i[disabled]{
+  color: #666666;
 }
