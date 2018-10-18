@@ -1,7 +1,5 @@
-import json
-
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+# from django.shortcuts import render
 
 from pure_beurre import redis_app as redis
 from . import requests

@@ -18,14 +18,9 @@ from pure_beurre import redis_app as redis
 @shared_task
 def get_product_names():
     """Get product names."""
-    # charge les pages
-    #  pour chaque page, on récupère le nom
-    #  on met le nom dans redis
-    #  on fait ça 10x déjà
     redis.delete("product_names")
 
     for index in range(100):
-        # Une nouvelle tâche pour ça
         get_page_and_put_names_in_redis.delay(index)
 
 
