@@ -10,5 +10,5 @@ from django.conf import settings
 if settings.DEBUG:
     from .redis import app as redis_app
     __all__ = ('celery_app', 'redis_app')
-
-__all__ = ('celery_app')
+else:
+    __all__ = ('celery_app')
