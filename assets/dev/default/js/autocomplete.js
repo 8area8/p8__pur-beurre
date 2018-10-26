@@ -1,8 +1,6 @@
 import '../../vendor/autocomplete/jquery-ui.scss';
 import '../../vendor/autocomplete/jquery-ui.js';
 
-var autocomplete_valuesOne = [];
-
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -24,6 +22,9 @@ $.ajaxSetup({
     }
 });
 
+
+var autocomplete_valuesOne = [];
+
 $('#input1').autocomplete({
     source: function (req, response) {
         $.ajax({
@@ -42,23 +43,6 @@ $('#input1').autocomplete({
             }
         });
     },
-    // change: function (event, ui) {
-    //     var input = $('#input1');
-    //     if (autocomplete_valuesOne.includes(input.val())) {
-    //         $("#inputbutton").removeAttr("disabled");
-    //     } else {
-    //         $("#inputbutton").attr("disabled", true);
-    //     }
-    // }
-});
-$("#input1").on("change paste autocompleteselect input", function () {
-    console.log("in 'change' function.")
-    var input = $('#input1');
-    if (autocomplete_valuesOne.includes(input.val())) {
-        $("#inputbutton").removeAttr("disabled");
-    } else {
-        $("#inputbutton").attr("disabled", true);
-    }
 });
 
 var autocomplete_valuesTwo = [];
@@ -81,30 +65,4 @@ $('#logo-search').autocomplete({
             }
         });
     }
-    // search: function (event, ui) {
-    //     var input = $('#logo-search');
-    //     if (autocomplete_values2.includes(input.val())) {
-    //         Console.log("on peut chercher oui");
-    //     } else {
-    //         $("#logo-search").popover();
-    //     }
-    // }
 });
-$('#logo-search').keyup(function checkValueBeforeRequest(e) {
-    if (e.keyCode == 13) {
-        var input = $('#logo-search');
-        if (autocomplete_valuesTwo.includes(input.val())) {
-            console.log("on peut chercher oui");
-        } else {
-            console.log("Non.");
-        }
-    }
-});
-
-function inputIsName(input, names) {
-    if (names.includes(input.val())) {
-        input.prop("disabled", false);
-    } else {
-        input.prop("disabled", true);
-    }
-}

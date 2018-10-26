@@ -17,8 +17,7 @@ let cleanOptions = {
 module.exports = {
     context: __dirname,
     entry: {
-        'index': './assets/dev/default/index.js',
-        'dashboard/index': './assets/dev/dashboard/js/index.js'
+        'index': './assets/dev/default/index.js'
     },
     output: {
         path: path.resolve("./assets/bundles"),
@@ -44,6 +43,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
+                            name: '[name].[ext]',
                             limit: 5000
                         }
                     }

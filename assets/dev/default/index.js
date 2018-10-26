@@ -6,7 +6,12 @@ import 'bootstrap';
 
 import './js/creative.js';
 import './js/logonav.js';
-import './js/autocomplete.js';
+// import './js/autocomplete.js';
+
+const carrot = require('./icons/carrot.png');
+const logo = require('./icons/logo.png');
+const colette = require('./imgs/colette.jpg');
+const remy = require('./imgs/remy.jpg');
 
 
 function celeryTest() {

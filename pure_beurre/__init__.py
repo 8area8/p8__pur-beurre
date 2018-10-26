@@ -7,8 +7,5 @@ from __future__ import absolute_import, unicode_literals
 from .celery import app as celery_app
 from django.conf import settings
 
-if settings.DEBUG:
-    from .redis import app as redis_app
-    __all__ = ('celery_app', 'redis_app')
-else:
-    __all__ = ('celery_app')
+
+__all__ = ('celery_app')
