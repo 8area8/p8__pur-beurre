@@ -19,6 +19,6 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     # PERSONNAL VIEWS
-    path('', include('django_apps.index.urls')),
-    path('autocomplete/', include('django_apps.autocomplete.urls'))
+    path('', include('apps.index.urls')),
+    path('autocomplete/', include('apps.autocomplete.urls'))
 ]

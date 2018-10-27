@@ -1,3 +1,4 @@
+/* eslint-disable */
 var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
@@ -6,12 +7,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 
 // the path(s) that should be cleaned
-let pathsToClean = [
-    "./assets/bundles"
-]
+const pathsToClean = ["./assets/bundles"]
 // the clean options to use
-let cleanOptions = {
-}
+const cleanOptions = {}
 
 
 module.exports = {
@@ -64,3 +62,4 @@ module.exports = {
         new CleanWebpackPlugin(pathsToClean, cleanOptions)
     ]
 }
+/* eslint-enable */

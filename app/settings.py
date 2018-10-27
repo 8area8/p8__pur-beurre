@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # DJANGO PLUGINS
     'webpack_loader',
     # PERSONNAL APPS
-    'django_apps.index',
+    'apps.index',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pure_beurre.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pure_beurre.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
@@ -173,7 +173,7 @@ CACHES = {
 
 # LOCAL SETTINGS
 try:
-    django_local = importlib.import_module("pure_beurre.local_settings")
+    django_local = importlib.import_module("app.local_settings")
     django_local.settings(locals())
 except ImportError:
     pass

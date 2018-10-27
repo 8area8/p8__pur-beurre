@@ -1,4 +1,4 @@
-// JS INDEX
+/* JS INDEX */
 
 import './styles.scss';
 
