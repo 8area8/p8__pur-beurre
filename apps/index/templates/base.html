@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- POLICES -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/twotone.css">
+
+
+    <title></title>
+</head>
+
+<body id="page-top">
+    {% load webpack_static from webpack_loader %}
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{% webpack_static 'logo.png' %}" alt="Logo"
+                    height="42" width="42"> Pure Beurre</a>
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navBarToogle"
+                aria-controls="navBarToogle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navBarToogle">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <input type="text" id="logo-search" class="form-control form-control-sm js-scroll-trigger"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#logo-account" id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"
+                                src="{% webpack_static 'carrot.png' %}" alt="my aliments" height="38" width="38"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#logo-exit" id="logo-deconexion"><i class="nav-icon material-icons-new icon-white twotone-exit_to_app"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+
+    <footer class="page-footer font-small footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center">
+                    <a class="nav-link text-white" href='#'>Mentions legales</a>
+                </div>
+                <div class='col-lg-4 mr-auto text-center'>
+                    <a class='nav-link text-white' href='#contact'>Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>window.product_names_url = `/autocomplete/ajax_product_names`</script>
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'index' 'js' %}
+
+</body>
+
+</html>
