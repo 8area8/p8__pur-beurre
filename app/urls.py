@@ -1,4 +1,4 @@
-"""pure_beurre URL Configuration
+"""App URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # PERSONNAL VIEWS
     path('', include('apps.index.urls')),
-    path('autocomplete/', include('apps.autocomplete.urls'))
+    path('autocomplete/', include('apps.autocomplete.urls')),
+    path('login/', include('apps.login.urls'))
 ]

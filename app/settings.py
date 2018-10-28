@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     # PERSONNAL APPS
     'apps.index',
+    'apps.login'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
+
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "mbriolet.ma@gmail.com"
+EMAIL_HOST_PASSWORD = "vrnovOYPDWm1"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # Database
@@ -116,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="d-flex masthead">
+    <div class="container my-auto center-block signup-cont">
+        <div class="row center-text">
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="text-uppercase">
+                    <strong>Création d'un compte</strong>
+                </h1>
+                <hr>
+            </div>
+        </div>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-primary">créer le compte</button>
+        </form>
+    </div>
+</header>
+{% endblock %}

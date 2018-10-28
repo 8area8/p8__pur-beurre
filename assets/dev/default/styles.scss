@@ -8,6 +8,7 @@
 @import "scss/services.scss";
 @import "scss/portfolio.scss";
 @import "scss/bootstrap-overrides.scss";
+@import "scss/signup.scss";
 
 
 
@@ -79,4 +80,20 @@ a[disabled]{
 i:disabled,
 i[disabled]{
   color: #666666;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }

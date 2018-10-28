@@ -55,6 +55,11 @@ https://www.npmjs.com/package/jquery-autocomplete
 https://xdsoft.net/jqplugins/autocomplete/
 
 
+
+#MAIL registery
+https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
+
+
 ---
 JS ANIMATION: https://github.com/legomushroom/mojs
 

@@ -1,0 +1,36 @@
+.signup-black {
+    height: 80px;
+    background-color: black;
+}
+
+.signup-cont {
+    border-radius: 5px;
+    padding: 3%;
+    background-color: white;
+}
+
+.signup-form {
+
+    .helptext {
+        margin-top: 1%;
+        color: $gray-600;
+        display: block;
+        font-size: 0.9em;
+    }
+    label {
+        margin: 0%;
+        margin-right: 1%;
+        display: block;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: $gray-700;
+    }
+    span {
+        display: inline-block;
+        margin-bottom: 2%;
+    }
+    button {
+        display: block;
+        margin: auto;
+    }
+}

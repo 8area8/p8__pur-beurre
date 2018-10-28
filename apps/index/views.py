@@ -15,7 +15,7 @@ class HomeView(TemplateView):
     template_name = "home.html"
 
 
-def celery(request):
-    """Celery event."""
-    tasks.add.delay()
-    return JsonResponse({"resp": "django celery works"})
+# def celery(request):
+#     """Celery event."""
+#     tasks.add.delay()
+#     return JsonResponse({"resp": "django celery works"})

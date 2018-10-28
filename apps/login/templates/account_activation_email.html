@@ -1,0 +1,9 @@
+{% autoescape off %}
+Bonjour {{ user.username }},
+
+Cliquez sur le lien ci dessous pour confirmer votre enregistrement au site food-fact.
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+A bientot sur le site !
+{% endautoescape %}
