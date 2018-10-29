@@ -12,6 +12,7 @@ redis = "*"
 django-webpack-loader = "*"
 eventlet = "*"
 requests = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 pylint = "*"

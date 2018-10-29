@@ -13,10 +13,6 @@
     <!-- ICONS -->
     <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/twotone.css">
 
-    <!-- GOOGLE SIGNIN -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="426657203112-q8td6s6nec119bit70i06nq12eufll8o.apps.googleusercontent.com">
-
 
     <title></title>
 </head>
@@ -50,9 +46,11 @@
                         <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"
                                 src="{% webpack_static 'carrot.png' %}" alt="my aliments" height="38" width="38"></a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#logo-exit" id="logo-deconexion"><i class="nav-icon material-icons-new icon-white twotone-exit_to_app"></i></a>
+                        <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" id="logo-deconexion"><i class="nav-icon material-icons-new icon-white twotone-exit_to_app"></i></a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

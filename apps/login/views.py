@@ -8,18 +8,19 @@ from django.contrib.auth.models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
 
 from .forms import SignUpForm
 from .token import account_activation_token
 
 
-def log_in(request):
+def login(request):
     """Login view."""
     email = request.POST['email']
     password = request.POST['password']
     user = authenticate(request, username=email, password=password)
     if user:
-        _login(request, user)
+        _login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, 'Vous êtes connecté.')
         return redirect("/")
     else:
@@ -62,7 +63,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
-        _login(request, user)
+        _login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, 'Vous êtes connecté.')
         return redirect('/')
     else:
@@ -72,3 +73,10 @@ def activate(request, uidb64, token):
 def account_activation_sent(request):
     """Email sent view."""
     return render(request, 'account_activation_sent.html')
+
+
+def logout(request):
+    """Log out user."""
+    auth_logout(request)
+    messages.success(request, 'Vous êtes déconnecté.')
+    return redirect('/')

@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # PERSONNAL VIEWS
     path('', include('apps.index.urls')),
     path('autocomplete/', include('apps.autocomplete.urls')),
-    path('login/', include('apps.login.urls'))
+    path('authenticate/', include('apps.login.urls')),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]

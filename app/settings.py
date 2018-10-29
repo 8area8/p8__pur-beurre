@@ -44,12 +44,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # DJANGO PLUGINS
     'webpack_loader',
+    'social_django',
     # PERSONNAL APPS
     'apps.index',
     'apps.login'
 ]
 # LOGIN ADD
-AUTHENTICATION_BACKENDS = ['apps.login.authenticate.EmailAuthenticate']
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+    # PERSONNAL AUTHENTICATION
+    'apps.login.authenticate.EmailAuthenticate'
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # EXTENSIONS
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -74,6 +83,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # ENXTENSIONS
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -89,6 +101,31 @@ EMAIL_HOST_USER = "mbriolet.ma@gmail.com"
 EMAIL_HOST_PASSWORD = "vrnovOYPDWm1"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# LOGINS
+LOGIN_URL = ''
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = 'logout'
+
+# GOOGLE THINGS
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('426657203112-44euplq31aq0icool'
+                                 'qrc5vqhnenbs3nb.apps.googleusercontent.com')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'eUjj2lTbPilB9x0nLfuGhrfm'
+# Google OAuth2 (google-oauth2)
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+# Google+ SignIn (google-plus)
+SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
+    'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
+SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
 
 
 # Database

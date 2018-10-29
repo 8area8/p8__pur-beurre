@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="login-form" action="{% url 'log_in' %}">
+                <form method="post" class="login-form" action="{% url 'login' %}">
                     {% csrf_token %}
                     <label for="email">Adresse mail :</label>
                     <input id="email" type="email" name="email" />
@@ -18,11 +18,14 @@
                     <button type="submit" class="btn btn-primary connection">Se connecter</button>
                 </form>
                 <div class="mx-auto no-account text-uppercase">Vous ne possédez pas encore de compte ?</div>
-                <form action="{% url signup %}" class="login-form">
+                <form action="{% url signup %}" class="create-form">
                     <button type="submit" class="btn btn-primary">Créer un compte</button>
                 </form>
                 <div class="mx-auto no-account">Ou connectez vous via google :</div>
-                <div class="g-signin2 mx-auto" data-onsuccess="onSignIn"></div>
+                <form class="google-form" action="{% url 'social:begin' 'google-oauth2' %}">
+                    <button type="submit" class="mx-auto google">Connection avec google</button>
+                </form>
+
             </div>
         </div>
     </div>
