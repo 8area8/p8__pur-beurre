@@ -39,7 +39,7 @@
                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" href="#"
+                        <a class="nav-link js-scroll-trigger" {% if not user.is_authenticated %}data-toggle="modal" data-target="#exampleModal" href="#"{% else %}href="{% url 'account' %}"{% endif %}
                             id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
                     </li>
                     <li class="nav-item">

@@ -1,0 +1,39 @@
+.account-header {
+
+    background-image: url('./imgs/account.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0;
+    padding-top: 30%;
+    position: relative;
+    h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.email-div {
+    background-color: $gray-100;
+    height: 60%;
+    padding: 10%;
+    padding-top: 4%;
+    .email-form {
+        color: $gray-600;
+        margin-top: 3%;
+        font-size: 1.2em;
+        font-weight: bold;
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            label {
+                @include sans-serif-font();
+                padding: 0%;
+                margin: 0%;
+            }
+        }
+    }
+}

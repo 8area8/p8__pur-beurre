@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'social_django',
     # PERSONNAL APPS
     'apps.index',
-    'apps.login'
+    'apps.login',
+    'apps.account'
 ]
 # LOGIN ADD
 AUTHENTICATION_BACKENDS = [
@@ -103,8 +104,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # LOGINS
-LOGIN_URL = ''
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_URL = 'logout'
 
 # GOOGLE THINGS
