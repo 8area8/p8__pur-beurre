@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Connection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="login-form" action="{% url 'log_in' %}">
+                    {% csrf_token %}
+                    <label for="email">Adresse mail :</label>
+                    <input id="email" type="email" name="email" />
+                    <label for="password">Mot de passe :</label>
+                    <input id="password" type="password" name="password" />
+                    <button type="submit" class="btn btn-primary connection">Se connecter</button>
+                </form>
+                <div class="mx-auto no-account text-uppercase">Vous ne possédez pas encore de compte ?</div>
+                <form action="{% url signup %}" class="login-form">
+                    <button type="submit" class="btn btn-primary">Créer un compte</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

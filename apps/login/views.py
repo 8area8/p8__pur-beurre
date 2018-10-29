@@ -3,21 +3,35 @@ from django.shortcuts import render, redirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login as _login
 from django.contrib.auth.models import User
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-from django.core.mail import send_mail
+from django.contrib import messages
 
 from .forms import SignUpForm
 from .token import account_activation_token
+
+
+def log_in(request):
+    """Login view."""
+    email = request.POST['email']
+    password = request.POST['password']
+    user = authenticate(request, username=email, password=password)
+    if user:
+        _login(request, user)
+        messages.success(request, 'Vous êtes connecté.')
+        return redirect("/")
+    else:
+        messages.error(request, 'Email ou mot de passe incorrect.')
+        return redirect('/')
 
 
 def signup(request):
     """Signup view."""
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and form.clean_email():
             user = form.save(commit=False)
             user.is_active = False
             user.save()
@@ -48,7 +62,8 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
-        login(request, user)
+        _login(request, user)
+        messages.success(request, 'Vous êtes connecté.')
         return redirect('/')
     else:
         return render(request, 'account_activation_invalid.html')

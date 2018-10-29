@@ -19,6 +19,7 @@
 
 <body id="page-top">
     {% load webpack_static from webpack_loader %}
+    {% include 'login_modal.html' %}
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -38,7 +39,8 @@
                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{% url login %}" id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
+                        <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#exampleModal" href="#"
+                            id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"

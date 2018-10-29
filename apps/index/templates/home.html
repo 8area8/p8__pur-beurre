@@ -5,6 +5,15 @@
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
+                {% for message in messages %}
+
+                <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}success{% endif %}">
+                    <a class="close" href="#" data-dismiss="alert">×</a>
+
+                    {{ message }}
+
+                </div>
+                {% endfor %}
                 <h1 class="text-uppercase">
                     <strong>Du gras, oui mais de qualité !</strong>
                 </h1>

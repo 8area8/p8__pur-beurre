@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'apps.index',
     'apps.login'
 ]
+# LOGIN ADD
+AUTHENTICATION_BACKENDS = ['apps.login.authenticate.EmailAuthenticate']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
