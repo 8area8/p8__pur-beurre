@@ -105,7 +105,8 @@ def settings(config):
 
 CREDITS
 
-Photo by Olenka Kotyk on Unsplash
+Photo by Olenka Kotyk on Unsplash - background index
+Photo by Annie Spratt on Unsplash - background account
 Carrot by Fabien Jouin from the Noun Project
 
 ICONS
