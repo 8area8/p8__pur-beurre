@@ -9,8 +9,10 @@ from django.contrib.auth import get_user_model
 
 
 class EmailAuthenticate(ModelBackend):
+    """Extended backend."""
 
     def authenticate(self, request, username=None, password=None, **kwargs):
+        """Authenticate method."""
         UserModel = get_user_model()
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
@@ -24,6 +26,7 @@ class EmailAuthenticate(ModelBackend):
         except UserModel.DoesNotExist:
             UserModel().set_password(password)
         else:
-            if user.check_password(password) and self.user_can_authenticate(user):
-                if user.is_active:
-                    return user
+            if user.check_password(password):
+                if self.user_can_authenticate(user):
+                    if user.is_active:
+                        return user

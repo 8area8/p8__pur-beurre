@@ -107,6 +107,7 @@ CREDITS
 
 Photo by Olenka Kotyk on Unsplash - background index
 Photo by Annie Spratt on Unsplash - background account
+Photo by Brooke Lark on Unsplash - signup
 Carrot by Fabien Jouin from the Noun Project
 
 ICONS

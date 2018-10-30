@@ -213,12 +213,12 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
 # REDIS CONFIG
-CACHES = {
-    "default": {
-        "BACKEND": "redis_cache.RedisCache",
-        "LOCATION": os.environ.get('REDIS_URL'),
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "redis_cache.RedisCache",
+#         "LOCATION": os.environ.get('REDIS_URL'),
+#     }
+# }
 
 # LOCAL SETTINGS
 try:
