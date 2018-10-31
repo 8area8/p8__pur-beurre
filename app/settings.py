@@ -105,7 +105,7 @@ EMAIL_USE_TLS = True
 
 # LOGINS
 LOGIN_URL = '/authenticate/signup'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_URL = 'logout'
 
 # GOOGLE THINGS
