@@ -109,7 +109,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = 'logout'
 
 # GOOGLE THINGS
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '426657203112-fubbn0lt8bivbgp770i2cnn0ife426a0.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('426657203112-fubbn0lt8bivbgp770i2cnn'
+                                 '0ife426a0.apps.googleusercontent.com')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'lx0W2CIKjUJcIoGUa-KSm_rA'
 # Google OAuth2 (google-oauth2)
 SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
