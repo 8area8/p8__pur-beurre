@@ -17,7 +17,7 @@
     <title></title>
 </head>
 
-<body id="page-top">
+<body class="d-flex flex-column">
     {% load webpack_static from webpack_loader %}
     {% include 'login_modal.html' %}
 
@@ -39,8 +39,9 @@
                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" {% if not user.is_authenticated %}data-toggle="modal" data-target="#exampleModal" href="#"{% else %}href="{% url 'account' %}"{% endif %}
-                            id="logo-account"><i class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
+                        <a class="nav-link js-scroll-trigger" {% if not user.is_authenticated %}data-toggle="modal"
+                            data-target="#exampleModal" href="#" {% else %}href="{% url 'account' %}" {% endif %} id="logo-account"><i
+                                class="nav-icon material-icons-new icon-white twotone-account_circle"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"
@@ -56,11 +57,15 @@
         </div>
     </nav>
 
-    {% block content %}
-    {% endblock %}
+
+    <main class="flex-grow-1 flex-shrink-0">
+        {% block content %}
+        {% endblock %}
+    </main>
 
 
-    <footer class="page-footer font-small footer">
+
+    <footer class="page-footer font-small footer flex-shrink-0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 ml-auto text-center">
