@@ -34,7 +34,7 @@ def login(request):
         return redirect('/')
 
 
-@anonymous_required(redirect_url="/")
+@anonymous_required(redirect_url="/account/")
 def signup(request):
     """Signup view."""
     if request.method == 'POST':
