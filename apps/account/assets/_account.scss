@@ -58,6 +58,13 @@
                 padding: 0%;
                 margin: 0%;
             }
+            @media screen and (max-width: 600px) {
+                flex-direction: column;
+                label {
+                    margin-bottom: 3%;
+                    font-size: 0.9em;
+                }
+            }
         }
     }
 }
