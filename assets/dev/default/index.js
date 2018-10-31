@@ -12,7 +12,6 @@ const carrot = require('./icons/carrot.png');
 const logo = require('./icons/logo.png');
 const colette = require('./imgs/colette.jpg');
 const remy = require('./imgs/remy.jpg');
-const account = require('./imgs/account.jpg');
 
 
 function celeryTest() {
