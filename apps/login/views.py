@@ -14,6 +14,7 @@ from django.urls import reverse
 
 from .forms import SignUpForm
 from .token import account_activation_token
+from app.extended_lib.anonymous import anonymous_required
 
 
 BACKEND = 'apps.login.authenticate.EmailAuthenticate'
@@ -33,6 +34,7 @@ def login(request):
         return redirect('/')
 
 
+@anonymous_required(redirect_url="/")
 def signup(request):
     """Signup view."""
     if request.method == 'POST':

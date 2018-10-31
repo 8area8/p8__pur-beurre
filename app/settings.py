@@ -104,8 +104,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # LOGINS
-LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/account/'
+LOGIN_URL = '/authenticate/signup'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = 'logout'
 
 # GOOGLE THINGS
