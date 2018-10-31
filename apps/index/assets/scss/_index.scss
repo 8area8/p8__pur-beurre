@@ -1,18 +1,3 @@
-@import '../../../node_modules/bootstrap/scss/bootstrap';
-
-@import "scss/variables.scss";
-@import "scss/mixins.scss";
-@import "scss/global.scss";
-@import "scss/navbar.scss";
-@import "scss/masthead.scss";
-@import "scss/services.scss";
-@import "scss/portfolio.scss";
-@import "scss/bootstrap-overrides.scss";
-@import "../../../apps/login/assets/login.scss";
-@import "../../../apps/account/assets/account.scss";
-
-
-
 // MATERIAL ICONS
 .material-icons-new {
     display: inline-block;
@@ -85,16 +70,16 @@ i[disabled]{
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
+// html {
+//   position: relative;
+//   min-height: 100%;
+// }
+// body {
+//   /* Margin bottom by footer height */
+//   margin-bottom: 60px;
+// }
+// .footer {
+//   position: relative;
+//   bottom: 0;
+//   width: 100%;
+// }

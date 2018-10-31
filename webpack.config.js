@@ -15,7 +15,7 @@ const cleanOptions = {}
 module.exports = {
     context: __dirname,
     entry: {
-        'index': './assets/dev/default/index.js'
+        'index': './assets/dev/index.js'
     },
     output: {
         path: path.resolve("./assets/bundles"),

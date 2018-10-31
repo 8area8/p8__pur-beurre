@@ -2,7 +2,7 @@
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url('./imgs/header.jpg');
+  background-image: url('../../apps/index/assets/imgs/header.jpg');
   background-position: center;
   @include background-cover;
   hr {

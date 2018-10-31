@@ -4,16 +4,16 @@ import './styles.scss';
 
 import 'bootstrap';
 
-import './js/creative.js';
-import './js/logonav.js';
-// import './js/autocomplete.js';
+import '../../apps/index/assets/js/creative.js';
+import '../../apps/index/assets/js/logonav.js';
 
-const carrot = require('./icons/carrot.png');
-const logo = require('./icons/logo.png');
-const colette = require('./imgs/colette.jpg');
-const remy = require('./imgs/remy.jpg');
+const carrot = require('../../apps/index/assets/icons/carrot.png');
+const logo = require('../../apps/index/assets/icons/logo.png');
+const colette = require('../../apps/index/assets/imgs/colette.jpg');
+const remy = require('../../apps/index/assets/imgs/remy.jpg');
 
 
+/*
 function celeryTest() {
     var body = document.querySelector("body");
 
@@ -48,3 +48,4 @@ function celeryTest() {
         newcelery();
     })
 }
+*/

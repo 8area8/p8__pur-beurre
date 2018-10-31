@@ -3,7 +3,6 @@ var $ = require('jquery');
 var logoAccount = $('#logo-account').html();
 var logoAliments = $('#logo-aliments').html();
 var logoDeco = $('#logo-deconexion').html();
-changeLogoNav();
 function getWindowSize() {
     return $(window).width() < 990;
 }
@@ -23,3 +22,4 @@ function changeLogoNav() {
 $(window).on('resize', function () {
     changeLogoNav();
 });
+changeLogoNav();
