@@ -24,5 +24,7 @@ urlpatterns = [
     path('autocomplete/', include('apps.autocomplete.urls')),
     path('authenticate/', include('apps.login.urls')),
     path('account/', include('apps.account.urls')),
+    path('products/', include('apps.products.urls')),
+    # SOCIAL DJANGO
     url(r'^auth/', include('social_django.urls', namespace='social')),
 ]

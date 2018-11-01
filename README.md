@@ -4,7 +4,7 @@ port par défaut: port 6379
 
 - celery pour le management des tasks.
 - eventlet pour faire tourner celery sur windows.
-- pipenv run celery -A pure_beurre.celery worker --pool=eventlet
+- pipenv run celery -A app.celery worker --pool=eventlet
 - En local, je dois démarrer django et celery. La communication celery est couplé à django.
 
 

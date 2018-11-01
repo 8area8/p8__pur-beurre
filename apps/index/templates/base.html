@@ -48,8 +48,6 @@
                         <a class="nav-link js-scroll-trigger" href="#logo-aliment" id="logo-aliments"><img class="nav-icon icon-white"
                                 src="{% webpack_static 'carrot.png' %}" alt="my aliments" height="38" width="38"></a>
                     </li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}" id="logo-deconexion"><i class="nav-icon material-icons-new icon-white twotone-exit_to_app"></i></a>
                     </li>

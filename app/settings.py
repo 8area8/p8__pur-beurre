@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     # DJANGO PLUGINS
     'webpack_loader',
     'social_django',
+    'django_object_actions',
     # PERSONNAL APPS
     'apps.index',
     'apps.login',
-    'apps.account'
+    'apps.account',
+    'apps.products'
 ]
-# LOGIN ADD
+
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
     'social_core.backends.google.GoogleOpenId',  # for Google authentication
@@ -58,6 +60,20 @@ AUTHENTICATION_BACKENDS = [
     # PERSONNAL AUTHENTICATION
     'apps.login.authenticate.EmailAuthenticate'
 ]
+
+# Django social auth pipeline
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',  # IMPORTANT
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -195,7 +211,7 @@ MEDIA_ROOT = print(Path(PUBLIC_DIR, 'media'))
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'bundles/',  # must end with slash
+        'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': Path(BASE_DIR, 'webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
