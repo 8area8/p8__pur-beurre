@@ -4,7 +4,6 @@ Use "ProductsGenerator.generate_products()".
 
 Interesting OpenFoodFact keys:
     - "image_url" : product image
-    - "image_nutrition_url" : nutrition image
     - "link" : manufactore site
     - "product_name" : product name
     - "generic_name" : description
@@ -70,7 +69,7 @@ class ProductsGenerator():
 def _generate_from_a_page(url, params):
     """Generate and filter.
 
-    NOTE : out of the class, to avoid Celery errors.
+    NOTE: out of the class, to avoid Celery errors.
     """
     response = requests.get(url, params).json()
     products = response["products"]
@@ -123,7 +122,7 @@ class CategoriesHandler:
     def create_categories(cls, category_names):
         """Create and returns the categories."""
         categories = []
-        for category in category_names.replace(" ", "").split(","):
+        for category in category_names.split(","):
             try:
                 category = Category.objects.get(name=category)
             except Category.DoesNotExist:
