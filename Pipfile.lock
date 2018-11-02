@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0e7e6585723fa026ce60aaa21d0ca141aa32d311671951f3fc34785ff714aa5a"
+            "sha256": "d6569937f2144eac29a1747ec2603448d7995360f72b4bc84d81a10b83aabeac"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -82,14 +82,6 @@
             "index": "pypi",
             "version": "==0.3.1"
         },
-        "django-object-actions": {
-            "hashes": [
-                "sha256:54151c8760cc3dc8627fdd0e66e5b1ae5391625756d7b301b939155a74f231a6",
-                "sha256:ac764e1fea91150160a9690c1cb5ae88d320da89cd06c65ec24c92247fb0762c"
-            ],
-            "index": "pypi",
-            "version": "==1.0.0"
-        },
         "django-webpack-loader": {
             "hashes": [
                 "sha256:60bab6b9a037a5346fad12d2a70a6bc046afb33154cf75ed640b93d3ebd5f520",
@@ -144,6 +136,13 @@
             ],
             "index": "pypi",
             "version": "==19.9.0"
+        },
+        "httpretty": {
+            "hashes": [
+                "sha256:543fa2bd9c319bfa1e1de9e37d7c9c08fa926a692b65b0be5df4b2f069fd0ad7"
+            ],
+            "index": "pypi",
+            "version": "==0.9.5"
         },
         "idna": {
             "hashes": [
@@ -320,7 +319,7 @@
                 "sha256:a3d89af5db9e9806a779a50296b5fdb466e281147c2c235e8225ecc6dbf7bbf3",
                 "sha256:c9b54bebe91a6a803e0772c8561d53f2926bfeb17cd141fbabcb08424086595c"
             ],
-            "markers": "python_version != '3.0.*' and python_version != '3.1.*' and python_version >= '2.7' and python_version != '3.2.*' and python_version != '3.3.*'",
+            "markers": "sys_platform == 'win32'",
             "version": "==0.4.0"
         },
         "flake8": {

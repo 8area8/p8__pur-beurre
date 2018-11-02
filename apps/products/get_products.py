@@ -36,7 +36,7 @@ class ProductsGenerator():
 
     @classmethod
     def generate_products(cls, delete_datas=[Product, Category, Substitute],
-                          max_pages=10, url=URL, params=PARAMETERS):
+                          max_pages=40, url=URL, params=PARAMETERS):
         """Get Open Food Fact products."""
         if delete_datas:
             cls._delete_model_datas(delete_datas)
@@ -54,7 +54,7 @@ class ProductsGenerator():
 
     @classmethod
     def _create(cls, product):
-        """Create the product."""
+        """Create the product and the categories."""
         category_names = product.pop('categories')
         categories = CategoriesHandler.create_categories(category_names)
 
@@ -95,6 +95,10 @@ class FilterProduct:
             name = product["product_name"]
             categories = product["categories"]
             nutriscore = product["nutrition_grade_fr"]
+            assert url
+            assert image
+            assert categories
+            assert name
             assert len(name) <= 150
             assert nutriscore in ("a", "b", "c", "d", "e")
             assert len(nutriscore) == 1

@@ -1,4 +1,7 @@
-"""Login tests."""
+"""Login tests.
+
+TODO: test the social auth logins.
+"""
 
 from django.test import TestCase
 from django.test import Client
@@ -8,8 +11,6 @@ from django.contrib.auth.models import User
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.urls import reverse
-
-from django.test import TestCase
 
 from .token import account_activation_token
 

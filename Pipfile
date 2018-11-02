@@ -13,7 +13,7 @@ django-webpack-loader = "*"
 eventlet = "*"
 requests = "*"
 social-auth-app-django = "*"
-django-object-actions = "*"
+httpretty = "*"
 
 [dev-packages]
 pylint = "*"

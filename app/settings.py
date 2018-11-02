@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # DJANGO PLUGINS
     'webpack_loader',
     'social_django',
-    'django_object_actions',
     # PERSONNAL APPS
     'apps.index',
     'apps.login',
