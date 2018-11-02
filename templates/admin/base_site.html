@@ -1,0 +1,37 @@
+{% extends 'admin/base_site.html' %}
+{% block branding %}
+<div class="head">
+    <h1 id="name">Administration de Pure Beurre</h1>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<button data-toggle="modal" data-target="#admin-generate-products" class="btn">Générer les produits</button>
+{% load webpack_static from webpack_loader %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'index' 'js' %}
+
+<!-- Modal -->
+<div class="modal fade" id="admin-generate-products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-admin" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Générer les produits</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="google-form modal-body modal-login modal-generate-corps">
+                <div class="generate-explanations">Attention : cette action prend quelques minutes. Tous les produits,
+                    Catégories et substitus
+                    présents dans la base de données seront supprimés.</div>
+                <form class="generate-products-form" action="{% url 'full_in_database' %}">
+                    <button type="submit" class="mx-auto btn">Accepter</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

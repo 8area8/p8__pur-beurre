@@ -18,10 +18,11 @@ import requests
 
 from django.db import IntegrityError
 from django.db.utils import DataError
-
-from .models import Product, Category, Substitute
+from django.core.exceptions import ObjectDoesNotExist
 from celery import shared_task
 import celery
+
+from .models import Product, Category, Substitute
 
 
 URL = "https://fr.openfoodfacts.org/cgi/search.pl/"
@@ -36,7 +37,7 @@ class ProductsGenerator():
 
     @classmethod
     def generate_products(cls, delete_datas=[Product, Category, Substitute],
-                          max_pages=40, url=URL, params=PARAMETERS):
+                          max_pages=5, url=URL, params=PARAMETERS):
         """Get Open Food Fact products."""
         if delete_datas:
             cls._delete_model_datas(delete_datas)
@@ -57,6 +58,8 @@ class ProductsGenerator():
         """Create the product and the categories."""
         category_names = product.pop('categories')
         categories = CategoriesHandler.create_categories(category_names)
+        if not categories:
+            return
 
         try:
             product = Product.objects.create(**product)
@@ -127,11 +130,21 @@ class CategoriesHandler:
         """Create and returns the categories."""
         categories = []
         for category in category_names.split(","):
-            try:
-                category = Category.objects.get(name=category)
-            except Category.DoesNotExist:
-                category = Category.objects.create(name=category)
-            finally:
+            if cls.check_category(category):
+                try:
+                    category = Category.objects.get(name=category)
+                except (Category.DoesNotExist, ObjectDoesNotExist):
+                    try:
+                        category = Category.objects.create(name=category)
+                    except IntegrityError:
+                        continue
                 categories.append(category)
 
         return categories
+
+    @classmethod
+    def check_category(cls, category):
+        """Filter the category."""
+        if not category or len(category) < 4 or ":" in category:
+            return False
+        return True

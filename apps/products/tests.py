@@ -10,10 +10,10 @@ import httpretty
 import json
 
 from apps.products.models import Category, Product
-from apps.products.get_products import CategoriesHandler as cathandler
-from apps.products.get_products import FilterProduct as filtprod
-from apps.products.get_products import ProductsGenerator as prodgen
-from apps.products.get_products import _generate_from_a_page
+from apps.products.tasks import CategoriesHandler as cathandler
+from apps.products.tasks import FilterProduct as filtprod
+from apps.products.tasks import ProductsGenerator as prodgen
+from apps.products.tasks import _generate_from_a_page
 
 
 class CategoriesHandlerTestCase(TestCase):
@@ -21,21 +21,22 @@ class CategoriesHandlerTestCase(TestCase):
 
     def setUp(self):
         """Set up function."""
-        self.catone = Category.objects.create(name="foo")
-        self.catwo = Category.objects.create(name="bar")
+        self.catone = Category.objects.create(name="foololo")
+        self.catwo = Category.objects.create(name="barlolo")
 
     def test_create_categories_one_created(self):
         """Test create_categories function."""
-        category_names = "foo,bar,etc"
+        category_names = "foololo,barlolo,etcfoo"
         response = cathandler.create_categories(category_names)
-        self.assertTrue(Category.objects.filter(name="etc").exists())
-        expected = [self.catone, self.catwo, Category.objects.get(name="etc")]
+        self.assertTrue(Category.objects.filter(name="etcfoo").exists())
+        expected = [self.catone, self.catwo,
+                    Category.objects.get(name="etcfoo")]
         self.assertEqual(response, expected)
         self.assertEqual(len(Category.objects.all()), 3)
 
     def test_create_categories_zero_created(self):
         """Test create_categories function."""
-        category_names = "foo,bar"
+        category_names = "foololo,barlolo"
         response = cathandler.create_categories(category_names)
         expected = [self.catone, self.catwo]
         self.assertEqual(response, expected)
@@ -45,8 +46,8 @@ class CategoriesHandlerTestCase(TestCase):
         """Test create_categories function."""
         category_names = "lala,lolo,lulu,lili"
         response = cathandler.create_categories(category_names)
-        expected = Category.objects.all().exclude(name="foo")
-        expected = expected.exclude(name="bar")
+        expected = Category.objects.all().exclude(name="foololo")
+        expected = expected.exclude(name="barlolo")
         self.assertEqual(response, list(expected))
         self.assertEqual(len(Category.objects.all()), 6)
 
@@ -111,7 +112,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
             "name": "foo",
-            "categories": "one,two,three",
+            "categories": "fooone,footwo,foothree",
             "nutriscore": "a",
             "personal_url": "x" * 300,
             "description": "",
@@ -127,14 +128,14 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
             "name": "foo",
-            "categories": "one,two",
+            "categories": "fooone,footwo",
             "nutriscore": "a",
             "personal_url": "example.com",
             "description": "",
             "stores": "auchan",
         }
         prodgen._create(filtered)
-        filtered["categories"] = "one,two"
+        filtered["categories"] = "fooone,footwo"
         prodgen._create(filtered)
         self.assertEqual(len(Product.objects.all()), 1)
         self.assertEqual(len(Category.objects.all()), 2)
@@ -145,7 +146,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
             "name": "foo",
-            "categories": "one,two,three",
+            "categories": "fooone,footwo,foothree",
             "nutriscore": "a",
             "personal_url": "example.com",
             "description": "",
@@ -168,7 +169,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
                     "image_url": "example.com",
                     "url": "example.com",
                     "product_name": "foo",
-                    "categories": "one,two,three",
+                    "categories": "fooone,footwo,foothree",
                     "nutrition_grade_fr": "a",
                     "link": "example.com",
                     "generic_name": "",

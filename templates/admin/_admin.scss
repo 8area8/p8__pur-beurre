@@ -1,0 +1,42 @@
+.dashboard {
+    background-color: $gray-200;
+}
+#header {
+    padding: 5%;
+    background-image: url('../../apps/index/assets/imgs/header.jpg');
+    background-size: cover;
+    h1 {
+        color: white;
+        font-weight: bold;
+    }
+    .btn {
+        margin-bottom: 2%;
+        border-radius: 3px;
+        background-color: $primary;
+        color: white;
+    }
+}
+#content {
+    h1 {
+        color: $gray-600;
+    }
+    #content-main {
+    }
+}
+.breadcrumbs {
+    background-color: $primary !important;
+}
+caption {
+    background-color: $primary !important;
+}
+
+.modal-admin {
+    color: $gray-700;
+}
+.generate-explanations {
+    margin: 2%;
+    color: $gray-700;
+    line-height : normal;
+    font-weight: bold;
+    margin-bottom: 6%;
+}

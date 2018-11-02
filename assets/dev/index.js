@@ -6,11 +6,13 @@ import 'bootstrap';
 
 import '../../apps/index/assets/js/creative.js';
 import '../../apps/index/assets/js/logonav.js';
+import '../../templates/admin/admin.js';
 
 const carrot = require('../../apps/index/assets/icons/carrot.png');
 const logo = require('../../apps/index/assets/icons/logo.png');
 const colette = require('../../apps/index/assets/imgs/colette.jpg');
 const remy = require('../../apps/index/assets/imgs/remy.jpg');
+const load = require('../../templates/admin/loading.gif');
 
 
 /*

@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from apps.products.get_products import ProductsGenerator as generator
+from apps.products.tasks import ProductsGenerator as generator
 
 
 class Command(BaseCommand):
