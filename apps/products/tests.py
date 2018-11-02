@@ -156,7 +156,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
         self.assertEqual(len(Category.objects.all()), 3)
 
     @httpretty.activate
-    def test_generate_from_page(self):
+    def test_generate_from_page_good_result(self):
         """Test generate_from_a_page function.
 
         NOTE: celery poses some problems during the test.
