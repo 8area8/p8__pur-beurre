@@ -32,11 +32,20 @@ caption {
 
 .modal-admin {
     color: $gray-700;
-}
-.generate-explanations {
-    margin: 2%;
-    color: $gray-700;
-    line-height : normal;
-    font-weight: bold;
-    margin-bottom: 6%;
+
+    .modal-content {
+        .modal-generate-corps{
+            .generate-explanations {
+                margin: 2%;
+                color: $gray-700;
+                line-height : normal;
+                font-size: 1.1em;
+                margin-bottom: 6%;
+            }
+            .generate-products-form {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
 }

@@ -1,15 +1,13 @@
 {% extends 'admin/base_site.html' %}
 {% block branding %}
 <div class="head">
-    <h1 id="name">Administration de Pure Beurre</h1>
+    <h1 id="name">Administration de Pur Beurre</h1>
 </div>
 {% endblock %}
 
 {% block nav-global %}
+
 <button data-toggle="modal" data-target="#admin-generate-products" class="btn">Générer les produits</button>
-{% load webpack_static from webpack_loader %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'index' 'js' %}
 
 <!-- Modal -->
 <div class="modal fade" id="admin-generate-products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -26,12 +24,17 @@
                 <div class="generate-explanations">Attention : cette action prend quelques minutes. Tous les produits,
                     Catégories et substitus
                     présents dans la base de données seront supprimés.</div>
-                <form class="generate-products-form" action="{% url 'full_in_database' %}">
-                    <button type="submit" class="mx-auto btn">Accepter</button>
+                <form id="generate-products-form" class="generate-products-form" action="{% url 'full_in_database' %}">
+                    <button type="submit" class="mx-auto btn submit-generate-products">Accepter</button>
                 </form>
 
             </div>
         </div>
     </div>
 </div>
+{% load webpack_static from webpack_loader %}
+<script>window.loading = `{%  webpack_static 'loading.gif' %}`</script>
+{% load render_bundle from webpack_loader %}
+<span id="adminpage-flag" style="display: none" />
+{% render_bundle 'index' 'js' %}
 {% endblock %}
