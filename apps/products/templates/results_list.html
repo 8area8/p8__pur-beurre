@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load webpack_static from webpack_loader %}
+
+<div class="nav-background"></div>
+<header class="text-white text-center results-header">
+    <!-- <div class="background" style="background-image:url('{{ product.photo_url }}')"> -->
+    </div>
+    <div class="container my-auto">
+        <div class="row">
+            <h1 class=""><strong>Liste des produits</strong></h1>
+        </div>
+    </div>
+</header>
+<div class="email-div text-center">
+    <hr>
+
+
+
+
+    {% for product in products %}
+    {{ product.name|upper }}<br>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+            <a href="?page=1">&laquo; première</a>
+            <a href="?page={{ products.previous_page_number }}">précédente</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ products.number }} sur {{ products.paginator.num_pages }}.
+            </span>
+
+            {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">suivante</a>
+            <a href="?page={{ products.paginator.num_pages }}">dernière &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+{% endblock %}

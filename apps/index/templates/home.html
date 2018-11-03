@@ -24,13 +24,19 @@
                     les jours.</h2>
 
                 <!-- BUTTON RESEARCH -->
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" id="input1" placeholder="Exemple: Kinder bueno" aria-label="Exemple: Kinder bueno"
-                        data-autocomplete="/autocomplete/ajax_product_names">
-                    <div class="input-group-append">
-                        <a id="inputbutton" class="input-group-text a-style right-rounded" href="#"><i disabled class="material-icons-new icon-white twotone-search"></i></a>
+
+
+                <form method="get" class="research-main" action="{% url 'research_product' research='la' %}">
+                    <div class="input-group input-group-lg">
+                        <input name="research" type="text" class="form-control" id="input1" placeholder="Exemple: Kinder bueno"
+                            aria-label="Exemple: Kinder bueno" data-autocomplete="/autocomplete/ajax_product_names">
+                        <div class="input-group-append">
+                            <button type="submit" id="inputbutton" class="input-group-text a-style right-rounded" href="#"><i
+                                    class="material-icons-new icon-white twotone-search"></i></button>
+
+                        </div>
                     </div>
-                </div>
+                </form>
 
             </div>
         </div>

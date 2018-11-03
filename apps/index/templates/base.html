@@ -35,8 +35,11 @@
             <div class="collapse navbar-collapse" id="navBarToogle">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <input type="text" id="logo-search" class="form-control form-control-sm js-scroll-trigger"
-                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Recherche">
+                        <form method="get" class="research-nav" action="{% url 'research_product' research='la' %}">
+                            <input type="text" id="logo-search" class="form-control form-control-sm js-scroll-trigger"
+                                name="research" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                placeholder="Recherche">
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" {% if not user.is_authenticated %}data-toggle="modal"

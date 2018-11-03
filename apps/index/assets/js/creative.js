@@ -7,6 +7,15 @@ import 'jquery-easing';
     // run code for homepage
     "use strict"; // Start of use strict
 
+    $(".research-nav").on("submit", function (e) {
+      var research = $("#logo-search").val();
+      $('.research-nav').attr('action', `/products/research_product/${research}/`);
+    });
+    $(".research-main").on("submit", function (e) {
+      var research = $("#input1").val();
+      $('.research-main').attr('action', `/products/research_product/${research}/`);
+    });
+
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
       if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {

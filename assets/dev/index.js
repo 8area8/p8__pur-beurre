@@ -13,6 +13,11 @@ const logo = require('../../apps/index/assets/icons/logo.png');
 const colette = require('../../apps/index/assets/imgs/colette.jpg');
 const remy = require('../../apps/index/assets/imgs/remy.jpg');
 const load = require('../../templates/admin/loading.gif');
+const nutriscore_a = require('../../apps/products/assets/nutriscore/nutriscore-a.png');
+const nutriscore_b = require('../../apps/products/assets/nutriscore/nutriscore-b.png');
+const nutriscore_c = require('../../apps/products/assets/nutriscore/nutriscore-c.png');
+const nutriscore_d = require('../../apps/products/assets/nutriscore/nutriscore-d.png');
+const nutriscore_e = require('../../apps/products/assets/nutriscore/nutriscore-e.png');
 
 
 /*
