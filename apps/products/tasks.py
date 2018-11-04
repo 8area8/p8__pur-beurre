@@ -98,6 +98,8 @@ class FilterProduct:
             name = product["product_name"]
             categories = product["categories"]
             nutriscore = product["nutrition_grade_fr"]
+            image_nutrition = product["image_nutrition_url"]
+            assert image_nutrition
             assert url
             assert image
             assert categories
@@ -114,6 +116,7 @@ class FilterProduct:
             "name": name,
             "categories": categories,
             "nutriscore": nutriscore,
+            "image_nutrition": image_nutrition,
             # OPTIONAL
             "personal_url": product.get("link", ""),
             "description": product.get("generic_name", ""),

@@ -68,6 +68,7 @@ class FilterProductTestCase(TestCase):
             "link": "",
             "generic_name": "",
             "stores": "auchan",
+            "image_nutrition_url": "example.com",
             "xxx": "xxx",
             "yyy": "yyy",
             "zzz": "zzz"
@@ -85,6 +86,7 @@ class FilterProductTestCase(TestCase):
             "personal_url": "",
             "description": "",
             "stores": "auchan",
+            "image_nutrition": "example.com"
         }
         self.assertEqual(response, expected)
 
@@ -119,6 +121,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "personal_url": "x" * 300,
             "description": "",
             "stores": "auchan",
+            "image_nutrition": "example.com",
         }
         prodgen._create(filtered)
         self.assertEqual(len(Product.objects.all()), 0)
@@ -135,6 +138,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "personal_url": "example.com",
             "description": "",
             "stores": "auchan",
+            "image_nutrition": "example.com",
         }
         prodgen._create(filtered)
         filtered["categories"] = "fooone,footwo"
@@ -153,6 +157,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "personal_url": "example.com",
             "description": "",
             "stores": "auchan",
+            "image_nutrition": "example.com",
         }
         prodgen._create(filtered)
         self.assertTrue(Product.objects.filter(name="foo").exists())
@@ -176,6 +181,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
                     "link": "example.com",
                     "generic_name": "",
                     "stores": "auchan",
+                    "image_nutrition_url": "example.com",
                     "xxx": "xxx",
                     "yyy": "yyy",
                     "zzz": "zzz"
