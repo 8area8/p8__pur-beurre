@@ -56,11 +56,12 @@ def results_list(request, research=None):
 @login_required
 def informations(request, product=None):
     """Research a product."""
-    product = Product.objects.get(name=product)
-    if product:
+    try:
+        product = Product.objects.get(name=product)
+    except Product.DoesNotExist:
+        return render(request, "product_not_found.html")
+    else:
         nutriscore_img = f"nutriscore-{product.nutriscore}.png"
         return render(request,
                       "informations.html", {"product": product,
                                             "nutriscore_img": nutriscore_img})
-    else:
-        return render(request, "product_not_found.html")

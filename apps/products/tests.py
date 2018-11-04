@@ -203,6 +203,7 @@ class ProductViewsTestCase(TestCase):
         self.client = Client()
         self.product_url = "/products/research_product"
         self.list_url = "/products/results_list"
+        self.info_url = "/products/informations"
         User.objects.create_user(username="Foo", email="bar@example.com",
                                  password="super-secret")
         Product.objects.create(name="oreo")
@@ -245,3 +246,19 @@ class ProductViewsTestCase(TestCase):
         product = "xzxzxz"
         response = self.client.get(f"{self.list_url}/{product}/")
         self.assertTrue(len(response.context["products"].object_list) == 0)
+
+    def test_informations_not_found(self):
+        """Test informations."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "xzxzxz"
+        response = self.client.get(f"{self.info_url}/{product}/")
+        self.assertTemplateUsed(response, "product_not_found.html")
+
+    def test_informations_found(self):
+        """Test informations."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "oreo"
+        response = self.client.get(f"{self.info_url}/{product}/")
+        self.assertTemplateUsed(response, "informations.html")
+        self.assertTrue(response.context.get("product"))
+        self.assertTrue(response.context.get("nutriscore_img"))
