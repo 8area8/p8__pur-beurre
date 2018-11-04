@@ -11,7 +11,9 @@
     </div>
     <div class="container my-auto">
         <div class="row">
-            <h1 class=""><strong>{{ product.name }}</strong></h1>
+            <a href="{% url 'informations' product=product.name %}">
+                <h1 class=""><strong>{{ product.name }}</strong></h1>
+            </a>
         </div>
     </div>
 </header>

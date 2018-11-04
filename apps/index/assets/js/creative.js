@@ -7,6 +7,11 @@ import 'jquery-easing';
     // run code for homepage
     "use strict"; // Start of use strict
 
+    $('img').on('click', function () {
+      $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+      $('#enlargeImageModal').modal('show');
+    });
+
     $(".research-nav").on("submit", function (e) {
       var research = $("#logo-search").val();
       $('.research-nav').attr('action', `/products/research_product/${research}/`);

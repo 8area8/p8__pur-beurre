@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load webpack_static from webpack_loader %}
+
+<div class="nav-background"></div>
+<header class="text-white text-center results-header">
+    <div class="background" style="background-image:url('{{ product.photo_url }}')">
+    </div>
+    <div class="container my-auto">
+        <div class="row">
+            <h1 class=""><strong>{{ product.name }}</strong></h1>
+        </div>
+    </div>
+</header>
+<div class="informations-div text-center">
+    <hr>
+
+    <img class="img-fluid" src="{% webpack_static nutriscore_img %}" alt="nutriscore">
+    <img class="infonutri img-fluid" src="{{ product.image_nutrition }}" alt="nutrition pour 100g">
+</div>
+<div class="text-center openfoodfact_url">
+    <a class="btn" href="{{ product.open_food_fact_url }}">Voir la fiche d'OpenFoodFacts</a>
+</div>
+{% endblock %}

@@ -51,3 +51,16 @@ def results_list(request, research=None):
     products = book.get_page(page)
     return render(request, "results_list.html", {"products": products,
                                                  "research": research})
+
+
+@login_required
+def informations(request, product=None):
+    """Research a product."""
+    product = Product.objects.get(name=product)
+    if product:
+        nutriscore_img = f"nutriscore-{product.nutriscore}.png"
+        return render(request,
+                      "informations.html", {"product": product,
+                                            "nutriscore_img": nutriscore_img})
+    else:
+        return render(request, "product_not_found.html")

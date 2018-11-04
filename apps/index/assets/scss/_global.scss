@@ -5,6 +5,10 @@ html {
   height: 100%;
 }
 
+img {
+    cursor: zoom-in;
+}
+
 body {
   @include serif-font;
 }
