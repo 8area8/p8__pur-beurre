@@ -17,10 +17,13 @@
 </header>
 <div class="email-div text-center">
     <hr>
+    {% if other_results > 0 %}
     <form method="get" action="{% url 'results_list' research=research %}">
-        {% csrf_token %}
-        <button type="submit" class="btn">{{other_results}} autres résultats pour : "{{research}}"</button>
+        <button type="submit" class="btn">{{other_results}} {% if other_results > 1 %}autres résultats{% else %}autre
+            résultat{% endif %} pour
+            : "{{research}}"</button>
     </form>
+    {% endif %}
     <img src="{% webpack_static nutriscore_img %}" alt="nutriscore">
 </div>
 {% endblock %}

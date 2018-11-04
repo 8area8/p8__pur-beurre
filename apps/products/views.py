@@ -49,4 +49,5 @@ def results_list(request, research=None):
     book = Paginator(products, 25)
 
     products = book.get_page(page)
-    return render(request, "results_list.html", {"products": products})
+    return render(request, "results_list.html", {"products": products,
+                                                 "research": research})

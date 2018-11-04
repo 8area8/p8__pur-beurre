@@ -19,16 +19,21 @@
             padding-top: 40%;
         }
     }
+    @media screen and (max-width: 1300px) {
+        h1 {
+            font-size: 1.8em;
+        }
+    }
     @media screen and (max-width: 650px) {
         margin-top: 10%;
         h1 {
-            font-size: 2em;
+            font-size: 1.4em;
         }
     }
     @media screen and (max-width: 380px) {
         margin-top: 20%;
         h1 {
-            font-size: 1.5em;
+            font-size: 1.2em;
         }
     }
     position: relative;
@@ -42,4 +47,28 @@
         padding: 0.2%;
         border-radius: 4px;
     }
+}
+
+.results-list-header {
+    @extend .results-header;
+    .background-list-products {
+        @extend .background;
+        background-size: cover;
+        @media screen and (max-width: 1000px) {
+            margin-top: 0%;
+            padding-top: 40%;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        margin-top: 0%;
+    }
+}
+.pagination {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+}
+.gray700 {
+    color: $gray-600;
+    margin-bottom: 3%;
 }

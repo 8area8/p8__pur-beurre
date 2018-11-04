@@ -18,6 +18,7 @@ const nutriscore_b = require('../../apps/products/assets/nutriscore/nutriscore-b
 const nutriscore_c = require('../../apps/products/assets/nutriscore/nutriscore-c.png');
 const nutriscore_d = require('../../apps/products/assets/nutriscore/nutriscore-d.png');
 const nutriscore_e = require('../../apps/products/assets/nutriscore/nutriscore-e.png');
+const results_list = require('../../apps/products/assets/images/products_list.jpg');
 
 
 /*

@@ -5,9 +5,11 @@ The function is simple and it would require
 to mock the function generate_from_a_page().
 """
 
-from django.test import TestCase, TransactionTestCase
 import httpretty
 import json
+from django.test import TestCase, TransactionTestCase
+from django.test import Client
+from django.contrib.auth.models import User
 
 from apps.products.models import Category, Product
 from apps.products.tasks import CategoriesHandler as cathandler
@@ -185,3 +187,55 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             body=json.dumps(mock_requests()))
         _generate_from_a_page.apply(args=("https://example.com", {})).get()
         self.assertTrue(Product.objects.filter(name="foo").exists())
+
+
+class ProductViewsTestCase(TestCase):
+    """Views tests class."""
+
+    def setUp(self):
+        """Set up function."""
+        self.client = Client()
+        self.product_url = "/products/research_product"
+        self.list_url = "/products/results_list"
+        User.objects.create_user(username="Foo", email="bar@example.com",
+                                 password="super-secret")
+        Product.objects.create(name="oreo")
+        Product.objects.create(name="oreo2")
+
+    def test_research_product_not_logged(self):
+        """Test research_product."""
+        product = "oreo"
+        response = self.client.get(f"{self.product_url}/{product}/")
+        self.assertRedirects(
+            response, ('/authenticate/signup?next='
+                       '/products/research_product/oreo/'))
+
+    def test_research_product_found(self):
+        """Test research_product."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "oreo"
+        response = self.client.get(f"{self.product_url}/{product}/")
+        self.assertTemplateUsed(response, "results.html")
+        self.assertEqual(response.context["other_results"], 1)
+        self.assertTrue(response.context.get("product"))
+
+    def test_research_product_not_found(self):
+        """Test research_product."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "potiron"
+        response = self.client.get(f"{self.product_url}/{product}/")
+        self.assertTemplateUsed(response, "no_products_found.html")
+
+    def test_results_list_results(self):
+        """Test results_list."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "oreo"
+        response = self.client.get(f"{self.list_url}/{product}/")
+        self.assertTrue(len(response.context["products"].object_list) == 2)
+
+    def test_results_list_no_results(self):
+        """Test results_list."""
+        self.client.login(email="bar@example.com", password='super-secret')
+        product = "xzxzxz"
+        response = self.client.get(f"{self.list_url}/{product}/")
+        self.assertTrue(len(response.context["products"].object_list) == 0)
