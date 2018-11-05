@@ -32,7 +32,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <i src="" class="enlargeImageModalSource" style="width: 100%;">
+                    <img src="" class="enlargeImageModalSource" style="width: 100%;">
                 </div>
             </div>
         </div>
@@ -76,15 +76,10 @@
             </div>
         </div>
     </nav>
-
-
     <main class="flex-grow-1 flex-shrink-0">
         {% block content %}
         {% endblock %}
     </main>
-
-
-
     <footer class="page-footer font-small footer flex-shrink-0">
         <div class="container">
             <div class="row">
@@ -97,12 +92,10 @@
             </div>
         </div>
     </footer>
-
     <span id="homesite-flag" style="display: none" />
     <script>window.product_names_url = `/autocomplete/ajax_product_names`</script>
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'index' 'js' %}
-
 </body>
 
 </html>
