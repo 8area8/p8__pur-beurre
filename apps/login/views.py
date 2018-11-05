@@ -55,7 +55,8 @@ def signup(request):
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form,
+                                           "site_title": "Enregistrement"})
 
 
 def activate(request, uidb64, token):
@@ -74,12 +75,14 @@ def activate(request, uidb64, token):
         messages.success(request, 'Vous êtes connecté.')
         return redirect(reverse('index'))
     else:
-        return render(request, 'account_activation_invalid.html')
+        return render(request, 'account_activation_invalid.html',
+                      {"site_title": "Confirmation invalide"})
 
 
 def account_activation_sent(request):
     """Email sent view."""
-    return render(request, 'account_activation_sent.html')
+    return render(request, 'account_activation_sent.html',
+                  {"site_title": "Demande de confirmation"})
 
 
 def logout(request):

@@ -39,9 +39,11 @@ def research_product(request, research=None):
                       {"product": product,
                        "other_results": other_results,
                        "research": research,
-                       "substitutes": substitutes})
+                       "substitutes": substitutes,
+                       "site_title": "Résultat"})
     else:
-        return render(request, "no_products_found.html")
+        return render(request, "no_products_found.html",
+                      {"site_title": "Aucun produits"})
 
 
 @login_required
@@ -54,7 +56,8 @@ def results_list(request, research=None):
 
     products = book.get_page(page)
     return render(request, "results_list.html", {"products": products,
-                                                 "research": research})
+                                                 "research": research,
+                                                 "site_title": "Résultats"})
 
 
 @login_required
@@ -68,7 +71,8 @@ def informations(request, product=None):
         nutriscore_img = f"nutriscore-{product.nutriscore}.png"
         return render(request,
                       "informations.html", {"product": product,
-                                            "nutriscore_img": nutriscore_img})
+                                            "nutriscore_img": nutriscore_img,
+                                            "site_title": "Informations"})
 
 
 @login_required
@@ -101,4 +105,18 @@ def substitutes(request):
     substitutes = request.user.substitute_set.all()
     for sub in substitutes:
         sub.nutriscore = f"nutriscore-{sub.substituted.nutriscore}.png"
-    return render(request, "substitutes.html", {"substitutes": substitutes})
+    return render(request, "substitutes.html", {"substitutes": substitutes,
+                                                "site_title": "Substituts"})
+
+
+@login_required
+def del_substitute(request):
+    """Show the substitutes page."""
+    if request.method == 'POST':
+        subname = request.POST["substitute_name"]
+        username = request.POST["username"]
+        substitute = Substitute.objects.get(substituted__name=subname,
+                                            user__username=username)
+        substitute.delete()
+        messages.success(request, "Substitut supprimé.")
+    return redirect('substitutes')

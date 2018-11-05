@@ -13,4 +13,5 @@ urlpatterns = [
     path('informations/<product>/', views.informations, name='informations'),
     path('save_substitute/', views.save_substitute, name='save_substitute'),
     path('substitutes/', views.substitutes, name='substitutes'),
+    path('del_substitute/', views.del_substitute, name='del_substitute'),
 ]

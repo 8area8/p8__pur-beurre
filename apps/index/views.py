@@ -5,10 +5,4 @@ from django.shortcuts import render
 
 def index(request):
     """Home view."""
-    return render(request, "home.html")
-
-
-# def celery(request):
-#     """Celery event."""
-#     tasks.add.delay()
-#     return JsonResponse({"resp": "django celery works"})
+    return render(request, "home.html", {"site_title": "Home"})

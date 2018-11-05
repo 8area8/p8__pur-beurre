@@ -16,6 +16,12 @@
     </div>
 </header>
 <div class="container-fluid substitute-mess">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}success{% endif %} text-center">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
     <h2 class="text-center">Substituts enregistrés :</h2>
     <div class="row mx-auto">
         {% for substitute in substitutes %}
@@ -29,6 +35,13 @@
             </a>
             <h5 class='text-center'>Substitut de : <a href="{% url 'informations' product=substitute.base_product.name %}">
                     {{ substitute.base_product.name }}</a></h5>
+            <form method="post" action="{% url 'del_substitute' %}">
+                {% csrf_token %}
+                <input name="substitute_name" value="{{ substitute.substituted.name }}" type='hidden'>
+                <input name="username" value="{{ substitute.user.username }}" type='hidden'>
+                <button type="submit" class="btn"><i class="material-icons-new twotone-clear"></i>
+                    supprimer</button>
+            </form>
         </div>
         {% endfor %}
     </div>

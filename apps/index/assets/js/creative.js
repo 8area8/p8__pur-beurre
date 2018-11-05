@@ -8,8 +8,10 @@ import 'jquery-easing';
     "use strict"; // Start of use strict
 
     $('img').on('click', function () {
-      $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
-      $('#enlargeImageModal').modal('show');
+      if (!$(this).hasClass("carrot")) {
+        $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+        $('#enlargeImageModal').modal('show');
+      }
     });
 
     $(".research-nav").on("submit", function (e) {
