@@ -25,6 +25,14 @@
                     Catégories et substitus
                     présents dans la base de données seront supprimés.</div>
                 <form id="generate-products-form" class="generate-products-form" action="{% url 'full_in_database' %}">
+                    <div>
+                        <label>Utiliser celery : </label>
+                        <input name="celery" type="checkbox">
+                    </div>
+                    <div>
+                        <label>Nombre de pages à télécharger : </label>
+                        <input name="pages" type="number" value="5" min="1">
+                    </div>
                     <button type="submit" class="mx-auto btn submit-generate-products">Accepter</button>
                 </form>
 

@@ -37,14 +37,18 @@ class ProductsGenerator():
 
     @classmethod
     def generate_products(cls, delete_datas=[Product, Category, Substitute],
-                          max_pages=5, url=URL, params=PARAMETERS):
+                          max_pages=20, url=URL, params=PARAMETERS,
+                          celery=True):
         """Get Open Food Fact products."""
         if delete_datas:
             cls._delete_model_datas(delete_datas)
 
         for page_number in range(max_pages):
             params["page"] = str(page_number + 1)
-            _generate_from_a_page.delay(url, params)
+            if celery:
+                _generate_from_a_page.delay(url, params)
+            else:
+                _generate_from_a_page.apply(args=(url, params)).get()
             print(f"page {page_number + 1} done.")
 
     @classmethod
@@ -105,6 +109,7 @@ class FilterProduct:
             assert categories
             assert name
             assert len(name) <= 150
+            name = name.replace("/", "-")  # avoid url bug.
             assert nutriscore in ("a", "b", "c", "d", "e")
             assert len(nutriscore) == 1
         except (KeyError, AssertionError):

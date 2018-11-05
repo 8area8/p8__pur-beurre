@@ -49,6 +49,68 @@
         border-radius: 4px;
     }
 }
+.container-fluid {
+    hr {
+        margin-top: 3%;
+    }
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 7%;
+        button {
+            border-radius: 5px;
+        }
+    }
+    h2 {
+        margin-top: 2%;
+        margin-bottom: 7%;
+    }
+    @media screen and (max-width: 650px) {
+        h2 {
+            font-size: 1.5em;
+        }
+    }
+    @media screen and (max-width: 350px) {
+        h2 {
+            font-size: 1.2em;
+        }
+    }
+    .row {
+        .substitute {
+            padding: 3%;
+            margin: 0% 2% 0% 2%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            // background-color: $gray-300;
+            .sub-images {
+                position:relative;
+                .photo {
+                    border-radius: 5px;
+                    max-height: 150px;
+                }
+                .sub-nutriscore {
+                    height: 50px;
+                    position: absolute;
+                    top: -25px;
+                    right: -40px;
+                }
+            }
+            h4 {
+                text-align: center;
+            }
+            @media screen and (max-width: 380px) {
+                h4 {
+                    font-size: 1em;
+                }
+                margin-top: 6%;
+                margin-bottom: 5%;
+            }
+        }
+    }
+}
 
 .results-list-header {
     @extend .results-header;

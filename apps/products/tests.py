@@ -5,8 +5,9 @@ The function is simple and it would require
 to mock the function generate_from_a_page().
 """
 
-import httpretty
 import json
+
+import httpretty
 from django.test import TestCase, TransactionTestCase
 from django.test import Client
 from django.contrib.auth.models import User
@@ -16,6 +17,7 @@ from apps.products.tasks import CategoriesHandler as cathandler
 from apps.products.tasks import FilterProduct as filtprod
 from apps.products.tasks import ProductsGenerator as prodgen
 from apps.products.tasks import _generate_from_a_page
+from apps.products.substitutes_algo import FindSubstitutes as findsub
 
 
 class CategoriesHandlerTestCase(TestCase):
@@ -262,3 +264,120 @@ class ProductViewsTestCase(TestCase):
         self.assertTemplateUsed(response, "informations.html")
         self.assertTrue(response.context.get("product"))
         self.assertTrue(response.context.get("nutriscore_img"))
+
+
+class SubstitutesAlgoTestCase(TestCase):
+    """Views tests class."""
+
+    def setUp(self):
+        """Set up function."""
+        for index in range(5):
+            Category.objects.create(name=f"cat-{index}")
+        nutriscore = 96
+        for index in range(10):
+            if index % 2 == 0:
+                nutriscore += 1
+            product = Product.objects.create(name=f"prod-{index}",
+                                             nutriscore=chr(nutriscore))
+        Product.objects.get(
+            name="prod-0").categories.add(*Category.objects.all()[:3])
+        Product.objects.get(
+            name="prod-2").categories.add(*Category.objects.all()[2:])
+        Product.objects.get(
+            name="prod-4").categories.add(*Category.objects.all())
+
+    def test_filter_by_nutriscore_a_test(self):
+        """Test filter_by_nutriscore function."""
+        products = Product.objects
+        substitutes = []
+        findsub._filter_by_nutriscore("a", products, substitutes)
+        self.assertEqual(len(substitutes), 2)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a"])
+
+    def test_filter_by_nutriscore_no_double(self):
+        """Test filter_by_nutriscore function.
+
+        We add a product in the substitutes list before testing.
+        """
+        products = Product.objects
+        substitutes = [products.filter(nutriscore="a")[0]]
+        findsub._filter_by_nutriscore("a", products, substitutes)
+        self.assertEqual(len(substitutes), 2)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a"])
+
+    def test_filter_by_nutriscore_b_test(self):
+        """Test filter_by_nutriscore function."""
+        products = Product.objects
+        substitutes = []
+        findsub._filter_by_nutriscore("b", products, substitutes)
+        self.assertEqual(len(substitutes), 2)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a"])
+
+    def test_filter_by_nutriscore_c_test(self):
+        """Test filter_by_nutriscore function."""
+        products = Product.objects
+        substitutes = []
+        findsub._filter_by_nutriscore("c", products, substitutes)
+        self.assertEqual(len(substitutes), 4)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a", "b", "b"])
+
+    def test_filter_by_nutriscore_d_test(self):
+        """Test filter_by_nutriscore function."""
+        products = Product.objects
+        substitutes = []
+        findsub._filter_by_nutriscore("d", products, substitutes)
+        self.assertEqual(len(substitutes), 6)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a", "b", "b", "c", "c"])
+
+    def test_filter_by_nutriscore_e_test(self):
+        """Test filter_by_nutriscore function."""
+        products = Product.objects
+        substitutes = []
+        findsub._filter_by_nutriscore("e", products, substitutes)
+        self.assertEqual(len(substitutes), 6)
+        nutriscores = [prod.nutriscore for prod in substitutes]
+        self.assertEqual(nutriscores, ["a", "a", "b", "b", "c", "c"])
+
+    def test_search_in_categories_len_0(self):
+        """Test search_in_categories function."""
+        product = Product.objects.get(name="prod-0")
+        name = product.name
+        nutriscore = product.nutriscore
+        categories = product.categories.all()
+        substitutes = findsub._search_in_categories(name, nutriscore,
+                                                    categories)
+        self.assertEqual(len(substitutes), 0)
+
+    def test_search_in_categories_len_1(self):
+        """Test search_in_categories function."""
+        product = Product.objects.get(name="prod-2")
+        name = product.name
+        nutriscore = product.nutriscore
+        categories = product.categories.all()
+        substitutes = findsub._search_in_categories(name, nutriscore,
+                                                    categories)
+        self.assertEqual(len(substitutes), 1)
+
+    def test_search_in_categories_len_2(self):
+        """Test search_in_categories function."""
+        product = Product.objects.get(name="prod-4")
+        name = product.name
+        nutriscore = product.nutriscore
+        categories = product.categories.all()
+        substitutes = findsub._search_in_categories(name, nutriscore,
+                                                    categories)
+        self.assertEqual(len(substitutes), 2)
+
+    def test_run_ok(self):
+        """Test run function."""
+        product = Product.objects.get(name="prod-4")
+        substitutes = findsub.run(product)
+        self.assertEqual(len(substitutes), 2)
+        nutriscore = product.nutriscore
+        one, two = substitutes
+        self.assertTrue(one.nutriscore < two.nutriscore < nutriscore)

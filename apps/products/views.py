@@ -12,12 +12,17 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 from .models import Product
+from .substitutes_algo import FindSubstitutes
 
 
 @staff_member_required
 def full_in_database(request):
     """Full in top the database."""
-    management.call_command("generate_products")
+    pages = int(request.GET.get("pages"))
+    celery = request.GET.get("celery")
+    if not celery:
+        celery = False
+    management.call_command("generate_products", pages=pages, celery=celery)
     messages.success(request, "Les produits ont bien été chargés.")
     return redirect('/admin/')
 
@@ -28,14 +33,13 @@ def research_product(request, research=None):
     products = Product.objects.all().filter(name__icontains=research)
     if products:
         product = products[0]
-        nutriscore_img = f"nutriscore-{product.nutriscore}.png"
         other_results = len(products) - 1
+        substitutes = FindSubstitutes.run(product)
         return render(request, "results.html",
                       {"product": product,
-                       "nutriscore_img": nutriscore_img,
                        "other_results": other_results,
-                       "research": research}
-                      )
+                       "research": research,
+                       "substitutes": substitutes})
     else:
         return render(request, "no_products_found.html")
 

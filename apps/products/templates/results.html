@@ -17,7 +17,7 @@
         </div>
     </div>
 </header>
-<div class="email-div text-center">
+<div class="container-fluid">
     <hr>
     {% if other_results > 0 %}
     <form method="get" action="{% url 'results_list' research=research %}">
@@ -26,6 +26,19 @@
             : "{{research}}"</button>
     </form>
     {% endif %}
-    <img src="{% webpack_static nutriscore_img %}" alt="nutriscore">
+    <h2 class="text-center">Vous pouvez remplacer cet aliment par :</h2>
+    <div class="row mx-auto">
+        {% for product in substitutes %}
+        <div class="col-12 col-md-4 mx-auto substitute">
+            <div class="sub-images">
+                <img class="img-fluid photo" src="{{ product.photo_url }}" alt="product_img">
+                <img class="img-fluid sub-nutriscore" src="{% webpack_static product.nutriscore %}" alt="nutriscore">
+            </div>
+            <a href="{% url 'informations' product=product.name %}">
+                <h4>{{ product.name }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
