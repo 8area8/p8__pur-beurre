@@ -2,3 +2,17 @@
 .service-box {
   max-width: 400px;
 }
+.mentions-div {
+  margin-bottom: 4%;
+  .title {
+    margin-bottom: 4%;
+  }
+  hr {
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+  div {
+    margin-bottom: 1%;
+    font-size: 1.2em;
+  }
+}

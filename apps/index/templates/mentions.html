@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load webpack_static from webpack_loader %}
+
+<header class="text-white text-center account-header">
+    <div class="background" style="background-image:url('{% webpack_static 'mentions.jpg' %}'); background-size: cover;"></div>
+    <div class="container my-auto">
+        <div class="row">
+            <h1 class=""><strong>Mentions légales</strong></h1>
+        </div>
+    </div>
+</header>
+<div class="mentions-div text-center">
+    <hr>
+    <div class="title">
+        <h4><b>Photos :</b></h4>
+    </div>
+    <div>Page Home - Photo réalisé Olenka Kotyk sur le site "Unsplash"</div>
+    <div>Page Compte - Photo réalisé Annie Spratt sur le site "Unsplash"</div>
+    <div>Page Enregistrement - Photo réalisé Brooke Lark sur le site "Unsplash"</div>
+    <div>Page Résultats - Photo réalisé Jay Wennington sur le site "Unsplash"</div>
+    <div>Page substituts - Photo réalisé Christine Siracusa sur le site "Unsplash"</div>
+    <div>Page mentions - Photo réalisé par Anton Darius | @theSollers sur le site "Unsplash"</div>
+    <div>Icone de carotte - icone réalisé par Fabien Jouin depuis "the Noun Project"</div>
+
+</div>
+{% endblock %}
