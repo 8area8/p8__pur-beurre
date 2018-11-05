@@ -11,4 +11,5 @@ urlpatterns = [
          views.research_product, name='research_product'),
     path('results_list/<research>/', views.results_list, name='results_list'),
     path('informations/<product>/', views.informations, name='informations'),
+    path('save_substitute/', views.save_substitute, name='save_substitute'),
 ]

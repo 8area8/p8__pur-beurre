@@ -11,7 +11,7 @@ from django.core import management
 from django.contrib import messages
 from django.core.paginator import Paginator
 
-from .models import Product
+from .models import Product, Substitute
 from .substitutes_algo import FindSubstitutes
 
 
@@ -69,3 +69,27 @@ def informations(request, product=None):
         return render(request,
                       "informations.html", {"product": product,
                                             "nutriscore_img": nutriscore_img})
+
+
+@login_required
+def save_substitute(request):
+    """Research a product."""
+    if request.method == 'POST':
+        redirect_url = request.POST["next"]
+        user = request.user
+        base_product = request.POST["base_product"]
+        base_product = Product.objects.get(name=base_product)
+        product = request.POST["product"]
+        product = Product.objects.get(name=product)
+
+        for substitute in user.substitute_set.all():
+            if substitute.substituted.name == product.name:
+                messages.error(
+                    request, "Le substitut est déjà présent dans vote liste.")
+                return redirect(redirect_url)
+
+        Substitute.objects.create(user=user, base_product=base_product,
+                                  substituted=product)
+
+        messages.success(request, "Substitut sauvegardé.")
+    return redirect(redirect_url)

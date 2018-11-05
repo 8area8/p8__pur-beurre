@@ -17,8 +17,16 @@
         </div>
     </div>
 </header>
-<div class="container-fluid">
+<div class="container-fluid substitute-mess">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}success{% endif %} text-center">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+        {{ message }}
+    </div>
+    {% endfor %}
     <hr>
+
+
     {% if other_results > 0 %}
     <form method="get" action="{% url 'results_list' research=research %}">
         <button type="submit" class="btn">{{other_results}} {% if other_results > 1 %}autres résultats{% else %}autre
@@ -28,15 +36,23 @@
     {% endif %}
     <h2 class="text-center">Vous pouvez remplacer cet aliment par :</h2>
     <div class="row mx-auto">
-        {% for product in substitutes %}
+        {% for substitute in substitutes %}
         <div class="col-12 col-md-4 mx-auto substitute">
             <div class="sub-images">
-                <img class="img-fluid photo" src="{{ product.photo_url }}" alt="product_img">
-                <img class="img-fluid sub-nutriscore" src="{% webpack_static product.nutriscore %}" alt="nutriscore">
+                <img class="img-fluid photo" src="{{ substitute.photo_url }}" alt="product_img">
+                <img class="img-fluid sub-nutriscore" src="{% webpack_static substitute.nutriscore %}" alt="nutriscore">
             </div>
-            <a href="{% url 'informations' product=product.name %}">
-                <h4>{{ product.name }}</h4>
+            <a href="{% url 'informations' product=substitute.name %}">
+                <h4>{{ substitute.name }}</h4>
             </a>
+            <form method="post" action="{% url 'save_substitute' %}">
+                {% csrf_token %}
+                <input name="base_product" value="{{ product.name }}" type='hidden'>
+                <input name="product" value="{{ substitute.name }}" type='hidden'>
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit" class="btn"><i class="material-icons-new twotone-save"></i>
+                    Sauvegarder</button>
+            </form>
         </div>
         {% endfor %}
     </div>

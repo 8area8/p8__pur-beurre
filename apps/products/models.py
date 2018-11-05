@@ -43,3 +43,7 @@ class Substitute(models.Model):
         Product, on_delete=True, related_name='base_product')
     substituted = models.ForeignKey(
         Product, on_delete=True, related_name='substituted')
+
+    def __str__(self):
+        """Nicer str."""
+        return f"substitut de {self.user.username} : {self.substituted.name}"

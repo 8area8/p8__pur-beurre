@@ -12,7 +12,7 @@ from django.test import TestCase, TransactionTestCase
 from django.test import Client
 from django.contrib.auth.models import User
 
-from apps.products.models import Category, Product
+from apps.products.models import Category, Product, Substitute
 from apps.products.tasks import CategoriesHandler as cathandler
 from apps.products.tasks import FilterProduct as filtprod
 from apps.products.tasks import ProductsGenerator as prodgen
@@ -206,6 +206,7 @@ class ProductViewsTestCase(TestCase):
         self.product_url = "/products/research_product"
         self.list_url = "/products/results_list"
         self.info_url = "/products/informations"
+        self.substitute_url = "/products/save_substitute/"
         User.objects.create_user(username="Foo", email="bar@example.com",
                                  password="super-secret")
         Product.objects.create(name="oreo")
@@ -264,6 +265,32 @@ class ProductViewsTestCase(TestCase):
         self.assertTemplateUsed(response, "informations.html")
         self.assertTrue(response.context.get("product"))
         self.assertTrue(response.context.get("nutriscore_img"))
+
+    def test_save_substitute_no_double(self):
+        """Test informations."""
+        user = User.objects.get(email="bar@example.com")
+        self.client.login(email="bar@example.com", password='super-secret')
+        base_product = Product.objects.get(name="oreo")
+        product = Product.objects.get(name="oreo2")
+        Substitute.objects.create(user=user, base_product=base_product,
+                                  substituted=product)
+        response = self.client.post(f"{self.substitute_url}",
+                                    {"base_product": base_product,
+                                     "product": product,
+                                     "next": self.substitute_url})
+        self.assertEqual(len(Substitute.objects.all()), 1)
+
+    def test_save_substitute_OK(self):
+        """Test informations."""
+        user = User.objects.get(email="bar@example.com")
+        self.client.login(email="bar@example.com", password='super-secret')
+        base_product = Product.objects.get(name="oreo")
+        product = Product.objects.get(name="oreo2")
+        response = self.client.post(f"{self.substitute_url}",
+                                    {"base_product": base_product,
+                                     "product": product,
+                                     "next": self.substitute_url})
+        self.assertEqual(len(Substitute.objects.all()), 1)
 
 
 class SubstitutesAlgoTestCase(TestCase):
@@ -378,6 +405,5 @@ class SubstitutesAlgoTestCase(TestCase):
         product = Product.objects.get(name="prod-4")
         substitutes = findsub.run(product)
         self.assertEqual(len(substitutes), 2)
-        nutriscore = product.nutriscore
         one, two = substitutes
-        self.assertTrue(one.nutriscore < two.nutriscore < nutriscore)
+        self.assertEqual(one.nutriscore, "nutriscore-a.png")
