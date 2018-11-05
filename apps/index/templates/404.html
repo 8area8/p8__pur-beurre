@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load webpack_static from webpack_loader %}
+
+<div class="nav-background"></div>
+<header class="text-white text-center results-header">
+    <div class="background" style="background-image:url('{{ product.photo_url }}')">
+    </div>
+    <div class="container my-auto">
+        <div class="row">
+            <h1 class=""><strong>La page recherché n'existe pas.</strong></h1>
+        </div>
+    </div>
+</header>
+<div class="email-div text-center">
+</div>
+{% endblock %}
