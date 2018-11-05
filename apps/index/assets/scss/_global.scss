@@ -8,6 +8,9 @@ html {
 img {
     cursor: zoom-in;
 }
+.carrot {
+  cursor: pointer;
+}
 
 body {
   @include serif-font;

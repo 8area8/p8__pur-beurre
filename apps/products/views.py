@@ -73,7 +73,7 @@ def informations(request, product=None):
 
 @login_required
 def save_substitute(request):
-    """Research a product."""
+    """Save a substitute."""
     if request.method == 'POST':
         redirect_url = request.POST["next"]
         user = request.user
@@ -93,3 +93,12 @@ def save_substitute(request):
 
         messages.success(request, "Substitut sauvegardé.")
     return redirect(redirect_url)
+
+
+@login_required
+def substitutes(request):
+    """Show the substitutes page."""
+    substitutes = request.user.substitute_set.all()
+    for sub in substitutes:
+        sub.nutriscore = f"nutriscore-{sub.substituted.nutriscore}.png"
+    return render(request, "substitutes.html", {"substitutes": substitutes})

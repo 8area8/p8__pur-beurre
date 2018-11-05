@@ -103,6 +103,8 @@
             }
             form {
                 button {
+                    color: $gray-800;
+                    background-color: white;
                     display: flex !important;
                     align-items: center;
                     justify-content: center;
@@ -110,6 +112,7 @@
                 }
             }
             h4 {
+                margin-top: 3.5%;
                 text-align: center;
             }
             @media screen and (max-width: 380px) {
@@ -172,4 +175,9 @@
         color: white;
         border-radius: 5px;
     }
+}
+
+
+.no-sub {
+    color: $gray-500;
 }
