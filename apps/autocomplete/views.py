@@ -1,14 +1,13 @@
 """Autocomplete views."""
 
 from django.http import JsonResponse
-# from django.core.cache import cache
 
-from apps.autocomplete import tasks
+from apps.autocomplete import cache
 
 
 def get_names(request):
     """Get product names."""
     research = request.POST.get("starts_with")
-    names = tasks.get_product_names(research)
+    names = cache.get_product_names(request, research)
 
     return JsonResponse({"names": names})
