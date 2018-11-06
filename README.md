@@ -121,13 +121,13 @@ You have to create a heroku account and set this project to a new heroku project
 
 Mikael Briolet - Initial work - OpenClassroom
 
-Photo by Olenka Kotyk on Unsplash - background index
-Photo by Annie Spratt on Unsplash - background account
-Photo by Brooke Lark on Unsplash - signup
-Photo by Jay Wennington on Unsplash - results_list
-Photo by Christine Siracusa on Unsplash - substitutes
-Photo by Harry Brewer on Unsplash - mentions
-Carrot by Fabien Jouin from the Noun Project
+Photo by Olenka Kotyk on Unsplash - background index  
+Photo by Annie Spratt on Unsplash - background account  
+Photo by Brooke Lark on Unsplash - signup  
+Photo by Jay Wennington on Unsplash - results_list  
+Photo by Christine Siracusa on Unsplash - substitutes  
+Photo by Harry Brewer on Unsplash - mentions  
+Carrot by Fabien Jouin from the Noun Project  
 
 ## License
 
