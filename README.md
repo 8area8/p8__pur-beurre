@@ -5,7 +5,8 @@
 
 ## News
 
-- 06/11/2018 : release **1.0** done. All features are implemented.
+- 06/11/2018 : release **1.1** done. The substitute save button is disabled if the user already has it.
+- 06/11/2018 : release **1.0** done. All features are implemented.  
 
 ## Presentation
 
