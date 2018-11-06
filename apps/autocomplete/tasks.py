@@ -1,16 +1,8 @@
-"""Celery tasks.
-
-redis.delete(key) -> delete a key
-redis.sadd(key, value) -> add a value in a set key
-redis.scard(key) --> len of a set key
-redis.smembers("key") --> values of a set key
-redis.info()["used_memory"] --> actual used memory
-"""
+"""Tasks."""
 
 from __future__ import absolute_import, unicode_literals
 
-from celery import shared_task
-from django.core.cache import cache
+# from celery import shared_task
 
 from apps.products.models import Product
 

@@ -27,7 +27,6 @@ def full_in_database(request):
     return redirect('/admin/')
 
 
-@login_required
 def research_product(request, research=None):
     """Research a product."""
     products = Product.objects.all().filter(name__icontains=research)
@@ -46,9 +45,8 @@ def research_product(request, research=None):
                       {"site_title": "Aucun produits"})
 
 
-@login_required
 def results_list(request, research=None):
-    """Research a product."""
+    """Get the results list."""
     page = request.GET.get('page')
 
     products = Product.objects.all().filter(name__icontains=research)
@@ -60,9 +58,8 @@ def results_list(request, research=None):
                                                  "site_title": "Résultats"})
 
 
-@login_required
 def informations(request, product=None):
-    """Research a product."""
+    """Product information page."""
     try:
         product = Product.objects.get(name=product)
     except Product.DoesNotExist:
@@ -111,7 +108,7 @@ def substitutes(request):
 
 @login_required
 def del_substitute(request):
-    """Show the substitutes page."""
+    """Delete a substitute."""
     if request.method == 'POST':
         subname = request.POST["substitute_name"]
         username = request.POST["username"]
