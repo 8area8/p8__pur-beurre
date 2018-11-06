@@ -7,6 +7,7 @@ import 'bootstrap';
 import '../../apps/index/assets/js/creative.js';
 import '../../apps/index/assets/js/logonav.js';
 import '../../templates/admin/main_admin.js';
+import '../../apps/autocomplete/assets/autocomplete.js';
 
 const carrot = require('../../apps/index/assets/icons/carrot.png');
 const logo = require('../../apps/index/assets/icons/logo.png');

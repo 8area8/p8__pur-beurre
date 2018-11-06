@@ -1,5 +1,5 @@
-import '../../vendor/autocomplete/jquery-ui.scss';
-import '../../vendor/autocomplete/jquery-ui.js';
+import './vendor/autocomplete/jquery-ui.scss';
+import './vendor/autocomplete/jquery-ui.js';
 
 function getCookie(name) {
     var cookieValue = null;
@@ -37,7 +37,6 @@ $('#input1').autocomplete({
             },
 
             success: function (datas) {
-                console.log("success")
                 autocomplete_valuesOne = datas.names;
                 response(datas.names);
             }
@@ -59,7 +58,6 @@ $('#logo-search').autocomplete({
             },
 
             success: function (datas) {
-                console.log("success")
                 autocomplete_valuesTwo = datas.names;
                 response(datas.names);
             }
