@@ -14,6 +14,7 @@ eventlet = "*"
 requests = "*"
 social-auth-app-django = "*"
 httpretty = "*"
+django-redis = "*"
 
 [dev-packages]
 pylint = "*"
