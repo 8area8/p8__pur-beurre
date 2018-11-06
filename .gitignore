@@ -1,4 +1,5 @@
 **/local_settings.py
+**/google_settings.py
 
 .vscode/
 node_modules/

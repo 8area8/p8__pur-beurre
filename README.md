@@ -1,82 +1,59 @@
-installation du serveur redis: https://github.com/MicrosoftArchive/redis/releases (msi version)
-- à activer depuis le gestionnaire des tâches.
-port par défaut: port 6379
 
-- celery pour le management des tasks.
-- eventlet pour faire tourner celery sur windows.
-- celery -A app.celery worker --pool=eventlet
-- En local, je dois démarrer django et celery. La communication celery est couplé à django.
+# Pur Beurre application
 
+![version](https://img.shields.io/badge/version-1.0-blue.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/python-3.6-ligh.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/project-web_app-orange.svg?longCache=true&style=flat-square)
 
-- créer une première vue.
-- configurer reddis en local
-- créer une tache redis cliquable
-- configurer redis en prod
+## News
 
----
+- 06/11/2018 : release **1.0** done. All features are implemented.
 
-#WEBPACK DJANGO:
-https://www.jamesbaltar.com/django-webpack
-- pip install django-webpack-loader
-- npm install --save-dev webpack webpack-bundle-tracker webpack-cli
+## Presentation
 
-- other to see: https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396
+![Pur Beurre app example](https://i.imgur.com/cnvOiDb.jpg)
 
-#JQUERY UI
-https://openclassrooms.com/fr/courses/510018-decouvrez-la-puissance-de-jquery-ui/510016-lautocompletion
-http://flaviusim.com/blog/AJAX-Autocomplete-Search-with-Django-and-jQuery/
+This project is an application that allows to find healthier substitutes for each food. The user can then save the substitutes of his choice. The project uses the OpenFoodFact API.
 
-#REDIS
-http://sametmax.com/files-de-taches-et-taches-recurrentes-avec-celery/
-http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
-https://gearheart.io/blog/how-to-deploy-a-django-application-on-heroku/
-- celery heroku issue: https://stackoverflow.com/questions/12013220/celery-creating-a-new-connection-for-each-task
+## Specificities
 
-COMMAND REDIS:
-- redis_object.info()["used_memory"]
-- retourne une valeur en bytes.
+- an advanced search system, with autocompletion
+- a login system, especially with google
+- the ability to save his substitutes
+- A strong administration page
+- Using Celery, and Redis as a cache server
+- Using webpack to manage the static files
 
-- redis_obj.scard("product_names")
-- retourne la longueur du set.
+## Getting Started
 
+You can clone this repository to your local drive and then deploy it to heroku.
 
-#slugignore
-https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-
---------
+### Prerequisites
 
-- pipfile et pipfile.lock = pipenv
-- package-lock.json + package.json + webpack-stats.json + webpack.conf.js = npm webpack
-- node_modules = npm
+to use it, you'll need to install:
 
-- pure_beurre + django_apps = django
+- python 3.6
+- pipenv
+- Redis (for local testing)
+- PostgreSQL (for local testing)
 
-# Autocomplete:
-https://www.npmjs.com/package/jquery-autocomplete
-https://xdsoft.net/jqplugins/autocomplete/
+### Installing
 
+Run pipenv at the root of the repository to install dependencies.
 
+### Local testing
 
-#MAIL registery
-https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
+You'll have to create a local_settings file if you want to run the application on local. Google_settings file is also required for local and production.  
+You need to get a key and secret pass from "google developers" (for local and production).  
+Finally, use this command to run the celery server:
+```celery -A app.celery worker --pool=eventlet```. Eventled fixes a windows bug.
 
+#### Settings configurations
 
----
-JS ANIMATION: https://github.com/legomushroom/mojs
-
-JS PACKAGES:
-
--scroll reveal (ScrollReveal({reset: true}).reveal('.headline');)
-https://scrollrevealjs.org/guide/customization.html, https://github.com/scrollreveal/scrollreveal
-
-webpack config output property, for django_webpack statics:
-- publicPath: '/static/bundles/'
-
------
-
-How I configured my local_setting.py :
 ```python
+"""My local_settings.py."""
+
+
 def settings(config):
-    """Modify the base configuration."""
+    """Local settings."""
     config["DEBUG"] = True
     config["TEMPLATE_DEBUG"] = True
 
@@ -93,17 +70,56 @@ def settings(config):
 
     config["CELERY_BROKER_URL"] = 'redis://localhost:6379/0'
     config["CELERY_RESULT_BACKEND"] = 'redis://localhost:6379/0'
+    config["SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"] = "xxxxxxxxx"
+    config["SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"] = "xxxxxxxxx"
+
+
+
+
+"""Google_settings.py"""
+
+KEY = "xxxxxxxxxxxxx"
+SECRET = "xxxxxxxxxxxxxx"
+
 ```
 
-----
-4 serveurs à lancer:
-- l'app django
-- le serveur postgres
-- le serveur redis
-- le serveur celery
+## Running the tests
 
+Simply write ```pipenv run python manage.py test``` in your shell, at the root of this repository.
 
-CREDITS
+## Deployment
+
+Use heroku for deployment.  
+You have to create a heroku account and set this project to a new heroku project. You must activate the Redis addon. Then simply write ```git push heroku master``` to deploy your application.  
+
+## Built With
+
+### Core dev
+
+- python - back language.  
+- npm, webpack - Front-end developement.  
+- Bootstrap 4 - css/js framework.  
+- Jquery - Javascript framework.
+- Scroll-reveal - Javascript package for animated scrolling.
+- Jquery UI autocomplete - Jquery package for autocompletion.  
+- Django - python web framework.  
+- Django-social-auth - Django package for social authenticates (ex: google)
+- Django-webpack - Django package for a nice implementation of webpack to django.
+- Django-heroku - Django package for a nice implementation of Django to heroku.
+- requests - nice python requests package.
+
+### Third API
+
+- OpenFoodFact API
+
+## Trello Scrum project
+
+**Link to Trello:**
+[![link to Trello](https://i.imgur.com/JrioLlb.jpg)](https://trello.com/p8_pure_beurre)
+
+## Authors
+
+Mikael Briolet - Initial work - OpenClassroom
 
 Photo by Olenka Kotyk on Unsplash - background index
 Photo by Annie Spratt on Unsplash - background account
@@ -113,7 +129,6 @@ Photo by Christine Siracusa on Unsplash - substitutes
 Photo by Harry Brewer on Unsplash - mentions
 Carrot by Fabien Jouin from the Noun Project
 
-ICONS
+## License
 
-https://material.io/tools/icons/?icon=exit_to_app&style=twotone
-- <i class="material-icons-new icon-white twotone-account_circle"></i>
+MIT license.

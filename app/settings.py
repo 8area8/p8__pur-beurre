@@ -16,6 +16,8 @@ import importlib
 
 import django_heroku
 
+from . import google_settings as google
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path().resolve()
@@ -124,9 +126,8 @@ LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_URL = 'logout'
 
 # GOOGLE THINGS
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('426657203112-fubbn0lt8bivbgp770i2cnn'
-                                 '0ife426a0.apps.googleusercontent.com')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'lx0W2CIKjUJcIoGUa-KSm_rA'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google.KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google.SECRET
 # Google OAuth2 (google-oauth2)
 SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
