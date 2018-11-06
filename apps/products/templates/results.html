@@ -50,8 +50,8 @@
                 <input name="base_product" value="{{ product.name }}" type='hidden'>
                 <input name="product" value="{{ substitute.name }}" type='hidden'>
                 <input type="hidden" name="next" value="{{ request.path }}">
-                <button type="submit" class="btn"><i class="material-icons-new twotone-save"></i>
-                    Sauvegarder</button>
+                <button {% if substitute.double %}disabled{% endif %} type="submit" class="btn"><i class="material-icons-new twotone-save"></i>
+                    {% if substitute.double %}Possédé{% else %}Sauvegarder{% endif %}</button>
             </form>
         </div>
         {% endfor %}

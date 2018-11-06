@@ -53,3 +53,13 @@ class FindSubstitutes:
             if product in substitutes:
                 continue
             substitutes.append(product)
+
+
+def disable_doubles(substitutes, user):
+    """Add a double attribute to the substitutes."""
+    u_substitutes = user.substitute_set.all()
+    for substitute in substitutes:
+        if u_substitutes.filter(substituted__name=substitute.name):
+            substitute.double = True
+        else:
+            substitute.double = False

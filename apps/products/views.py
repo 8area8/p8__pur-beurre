@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 from .models import Product, Substitute
-from .substitutes_algo import FindSubstitutes
+from .substitutes_algo import FindSubstitutes, disable_doubles
 
 
 @staff_member_required
@@ -34,6 +34,7 @@ def research_product(request, research=None):
         product = products[0]
         other_results = len(products) - 1
         substitutes = FindSubstitutes.run(product)
+        disable_doubles(substitutes, request.user)
         return render(request, "results.html",
                       {"product": product,
                        "other_results": other_results,

@@ -18,6 +18,7 @@ from apps.products.tasks import FilterProduct as filtprod
 from apps.products.tasks import ProductsGenerator as prodgen
 from apps.products.tasks import _generate_from_a_page
 from apps.products.substitutes_algo import FindSubstitutes as findsub
+from apps.products.substitutes_algo import disable_doubles
 
 
 class CategoriesHandlerTestCase(TestCase):
@@ -212,14 +213,6 @@ class ProductViewsTestCase(TestCase):
         Product.objects.create(name="oreo")
         Product.objects.create(name="oreo2")
 
-    def test_research_product_not_logged(self):
-        """Test research_product."""
-        product = "oreo"
-        response = self.client.get(f"{self.product_url}/{product}/")
-        self.assertRedirects(
-            response, ('/authenticate/signup?next='
-                       '/products/research_product/oreo/'))
-
     def test_research_product_found(self):
         """Test research_product."""
         self.client.login(email="bar@example.com", password='super-secret')
@@ -407,3 +400,15 @@ class SubstitutesAlgoTestCase(TestCase):
         self.assertEqual(len(substitutes), 2)
         one, two = substitutes
         self.assertEqual(one.nutriscore, "nutriscore-a.png")
+
+    def test_disable_doubles(self):
+        """Test disable_doubles function."""
+        user = User.objects.create_user(username="foo", password="secret")
+        product = Product.objects.get(name="prod-0")
+        substituted = Product.objects.get(name="prod-1")
+        substitute = Substitute.objects.create(base_product=product,
+                                               substituted=substituted,
+                                               user=user)
+        substitutes = [substituted]
+        disable_doubles(substitutes, user)
+        self.assertTrue(substitutes[0].double)
