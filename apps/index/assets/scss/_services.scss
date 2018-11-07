@@ -15,4 +15,14 @@
     margin-bottom: 1%;
     font-size: 1.2em;
   }
+  @media screen and (max-width: 640px) {
+    padding: 4%;
+    .title {
+      margin-bottom: 8%;
+    }
+    div {
+      margin-bottom: 5%;
+      font-size: 1em;
+    }
+}
 }
