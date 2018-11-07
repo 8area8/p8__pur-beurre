@@ -43,7 +43,7 @@ Run pipenv at the root of the repository to install dependencies.
 ### Local testing
 
 You'll have to create a local_settings file if you want to run the application on local. Google_settings file is also required for local and production.  
-You need to get a key and secret pass from "google developers" (for local and production).  
+You need to get a key and secret pass from "google developers" for local and production environments.
 Finally, use this command to run the celery server:
 ```celery -A app.celery worker --pool=eventlet```. Eventled fixes a windows bug.
 
@@ -74,14 +74,6 @@ def settings(config):
     config["SOCIAL_AUTH_GOOGLE_OAUTH2_KEY"] = "xxxxxxxxx"
     config["SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"] = "xxxxxxxxx"
 
-
-
-
-"""Google_settings.py"""
-
-KEY = "xxxxxxxxxxxxx"
-SECRET = "xxxxxxxxxxxxxx"
-
 ```
 
 ## Running the tests
@@ -92,6 +84,7 @@ Simply write ```pipenv run python manage.py test``` in your shell, at the root o
 
 Use heroku for deployment.  
 You have to create a heroku account and set this project to a new heroku project. You must activate the Redis addon. Then simply write ```git push heroku master``` to deploy your application.  
+Create two environment variables on your Heroku dashboard, and call them "GOOGLE_KEY" for the key, and "GOOGLE_PASS" for the password.  
 
 ## Built With
 
