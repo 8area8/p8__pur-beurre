@@ -34,7 +34,8 @@ def research_product(request, research=None):
         product = products[0]
         other_results = len(products) - 1
         substitutes = FindSubstitutes.run(product)
-        disable_doubles(substitutes, request.user)
+        if not request.user.is_anonymous:
+            disable_doubles(substitutes, request.user)
         return render(request, "results.html",
                       {"product": product,
                        "other_results": other_results,
