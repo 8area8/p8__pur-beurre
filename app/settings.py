@@ -30,7 +30,7 @@ SECRET_KEY = '(n($=^94n=1t%u4rozyrw-h_0za&vz9fbag1!+yv=)2#aviepb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.99.100"]
 
 
 # Application definition
@@ -146,12 +146,17 @@ SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# we only need the engine name, as heroku takes care of the rest
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT")
     }
 }
+# postgres://mikael:vrnovOYPDWm12@food-fact.clevaxcctwd5.us-east-1.rds.amazonaws.com:5432/mikael?sslrootcert=app/rds-combined-ca-bundle.pem&sslmode=require
 
 #  Django redis
 CACHES = {
@@ -241,10 +246,3 @@ if not DEBUG:
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
-
-# LOCAL SETTINGS
-try:
-    django_local = importlib.import_module("app.local_settings")
-    django_local.settings(locals())
-except ImportError:
-    pass
