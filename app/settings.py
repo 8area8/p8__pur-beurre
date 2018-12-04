@@ -114,7 +114,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mbriolet.ma@gmail.com"
-EMAIL_HOST_PASSWORD = "vrnovOYPDWm12"
+EMAIL_HOST_PASSWORD = os.getenv("DATABASE_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -162,7 +162,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.getenv("REDIS_URL", "redis://127.0.0.1:6379/1"),
+        "LOCATION": os.getenv('REDIS_PORT'),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -219,7 +219,7 @@ STATIC_URL = '/static/'
 
 # STATIC FILES CONFIG
 STATICFILES_DIRS = (
-    Path(BASE_DIR, 'assets'),
+    Path(BASE_DIR, 'assets')
 )
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
@@ -239,7 +239,7 @@ WEBPACK_LOADER = {
 
 # CELERY CONFIG
 if not DEBUG:
-    CELERY_BROKER_URL = os.getenv('REDIS_URL')
+    CELERY_BROKER_URL = os.getenv('REDIS_PORT')
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
     CELERY_BROKER_POOL_LIMIT = 0
 
