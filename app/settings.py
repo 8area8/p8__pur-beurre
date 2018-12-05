@@ -219,7 +219,7 @@ STATIC_URL = '/static/'
 
 # STATIC FILES CONFIG
 STATICFILES_DIRS = (
-    Path(BASE_DIR, 'assets')
+    Path(BASE_DIR, 'assets'),
 )
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
