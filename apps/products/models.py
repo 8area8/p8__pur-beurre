@@ -17,6 +17,9 @@ class Category(models.Model):
 class Product(models.Model):
     """Product model."""
 
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
     categories = models.ManyToManyField(Category)
 
     name = models.CharField(max_length=150, unique=True)
@@ -34,15 +37,24 @@ class Product(models.Model):
         """Nicer str."""
         return self.name
 
+    def update(self, product):
+        """Update the product."""
+        self.description = product.get("generic_name", "")
+        self.nutriscore = product["nutrition_grade_fr"]
+        self.image = product["image_url"]
+        self.url = product["url"]
+
+        self.save()
+
 
 class Substitute(models.Model):
     """Substitute model."""
 
-    user = models.ForeignKey(User, on_delete=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     base_product = models.ForeignKey(
-        Product, on_delete=True, related_name='base_product')
+        Product, on_delete=models.CASCADE, related_name='base_product')
     substituted = models.ForeignKey(
-        Product, on_delete=True, related_name='substituted')
+        Product, on_delete=models.CASCADE, related_name='substituted')
 
     def __str__(self):
         """Nicer str."""

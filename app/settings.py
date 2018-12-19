@@ -31,6 +31,7 @@ SECRET_KEY = '(n($=^94n=1t%u4rozyrw-h_0za&vz9fbag1!+yv=)2#aviepb'
 DEBUG = False
 
 ALLOWED_HOSTS = ["192.168.99.100"]
+ADMINS = [("mikael", "mbriolet.ma@gmail.com")]
 
 
 # Application definition
@@ -239,7 +240,7 @@ WEBPACK_LOADER = {
 
 # CELERY CONFIG
 if not DEBUG:
-    CELERY_BROKER_URL = os.getenv('REDIS_PORT')
+    CELERY_BROKER_URL = "redis://redis:" + os.getenv('REDIS_PORT')
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
     CELERY_BROKER_POOL_LIMIT = 0
 

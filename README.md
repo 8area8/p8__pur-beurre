@@ -42,7 +42,7 @@ Run pipenv at the root of the repository to install dependencies.
 
 ### Local testing
 
-You'll have to create a local_settings file if you want to run the application on local.    
+You'll have to create a local_settings file if you want to run the application on local.  
 You need to get a key and secret pass from "google developers" for local and production environments.  
 Finally, use this command to run the celery server:
 ```celery -A app.celery worker --pool=eventlet```. Eventled fixes a windows bug.
