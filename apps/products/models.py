@@ -39,12 +39,21 @@ class Product(models.Model):
 
     def update(self, product):
         """Update the product."""
-        self.description = product.get("generic_name", "")
-        self.nutriscore = product["nutrition_grade_fr"]
-        self.image = product["image_url"]
-        self.url = product["url"]
+        keys = {"description": "generic_name",
+                "nutriscore": "nutrition_grade_fr",
+                "image": "image_url",
+                "url": "url"}
 
-        self.save()
+        for key, value in keys.items():
+            try:
+                if not product[value]:
+                    raise ValueError
+                getattr(self, key)
+                setattr(self, key, product[value])
+            except (AttributeError, ValueError, KeyError):
+                continue
+            else:
+                self.save()
 
 
 class Substitute(models.Model):
