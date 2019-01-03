@@ -15,6 +15,7 @@ requests = "*"
 social-auth-app-django = "*"
 httpretty = "*"
 django-redis = "*"
+sentry-sdk = "==0.6.5"
 
 [dev-packages]
 pylint = "*"

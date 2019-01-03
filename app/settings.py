@@ -16,6 +16,9 @@ import importlib
 
 import django_heroku
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path().resolve()
@@ -247,3 +250,10 @@ if not DEBUG:
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
+
+
+# SENTRY INTEGRATION
+sentry_sdk.init(
+    dsn="https://8d6f54fd77504e2595bb43acaffea64d@sentry.io/1363767",
+    integrations=[DjangoIntegration()]
+)
