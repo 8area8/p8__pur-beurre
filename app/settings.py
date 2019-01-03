@@ -240,7 +240,7 @@ WEBPACK_LOADER = {
 
 # CELERY CONFIG
 if not DEBUG:
-    CELERY_BROKER_URL = "redis://redis:" + os.getenv('REDIS_PORT')
+    CELERY_BROKER_URL = "redis://redis:" + os.getenv('REDIS_PORT', "")
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
     CELERY_BROKER_POOL_LIMIT = 0
 
