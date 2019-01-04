@@ -14,6 +14,8 @@ from django.core.paginator import Paginator
 from .models import Product, Substitute
 from .substitutes_algo import FindSubstitutes, disable_doubles
 
+from sentry_sdk import capture_message
+
 
 @staff_member_required
 def full_in_database(request):
@@ -65,6 +67,7 @@ def informations(request, product=None):
     try:
         product = Product.objects.get(name=product)
     except Product.DoesNotExist:
+        capture_message("Product does not exist!", level="error")
         return render(request, "product_not_found.html")
     else:
         nutriscore_img = f"nutriscore-{product.nutriscore}.png"
