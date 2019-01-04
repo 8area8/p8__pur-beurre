@@ -34,7 +34,7 @@ SECRET_KEY = '(n($=^94n=1t%u4rozyrw-h_0za&vz9fbag1!+yv=)2#aviepb'
 DEBUG = False
 
 ALLOWED_HOSTS = ["192.168.99.100",
-                 "www.ec2-34-238-138-167.compute-1.amazonaws.com"]
+                 "ec2-34-238-138-167.compute-1.amazonaws.com"]
 ADMINS = [("mikael", "mbriolet.ma@gmail.com")]
 
 
