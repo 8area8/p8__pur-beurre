@@ -67,7 +67,7 @@ def informations(request, product=None):
     try:
         product = Product.objects.get(name=product)
     except Product.DoesNotExist:
-        capture_message("Product does not exist!", level="error")
+        capture_message("Product does not exist!", level="error")  # SENTRY
         return render(request, "product_not_found.html")
     else:
         nutriscore_img = f"nutriscore-{product.nutriscore}.png"
