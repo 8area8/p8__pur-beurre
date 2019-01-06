@@ -255,6 +255,6 @@ CELERY_ACCEPT_CONTENT = ['json']
 
 # SENTRY INTEGRATION
 sentry_sdk.init(
-    dsn="https://8d6f54fd77504e2595bb43acaffea64d@sentry.io/1363767",
+    dsn=os.getenv('SENTRY_DNS', ""),
     integrations=[DjangoIntegration()]
 )
