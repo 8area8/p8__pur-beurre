@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     # DJANGO PLUGINS
     'webpack_loader',
     'social_django',
+    # https://github.com/twaddington/django-gravatar
+    'django_gravatar',
+    # https://pypi.org/project/django-widget-tweaks/
+    'widget_tweaks',
     # PERSONNAL APPS
     'apps.index',
     'apps.login',
@@ -114,7 +118,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mbriolet.ma@gmail.com"
-EMAIL_HOST_PASSWORD = "vrnovOYPDWm12"
+EMAIL_HOST_PASSWORD = os.getenv("GOOGLE_PASS")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -216,7 +220,7 @@ STATICFILES_DIRS = (
 )
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = print(Path(PUBLIC_DIR, 'media'))
+MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
 
 # WEBPACK CONFIG
 WEBPACK_LOADER = {
@@ -254,3 +258,7 @@ try:
     django_local.settings(locals())
 except ImportError:
     pass
+
+
+# Gravatar
+GRAVATAR_DEFAULT_IMAGE = "identicon"

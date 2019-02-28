@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -87,7 +88,7 @@
         "line-comment-position": "error",
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
         ],
         "lines-around-comment": "error",
         "lines-around-directive": "error",

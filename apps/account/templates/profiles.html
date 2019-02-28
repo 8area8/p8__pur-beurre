@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load webpack_static from webpack_loader %}
+{% load gravatar %}
+
+<header class="text-white text-center account-header">
+    <div class="background"></div>
+    <div class="container my-auto">
+        <div class="row">
+            <h1 class=""><strong>Compte de {{ other_user.username }}</strong></h1>
+        </div>
+    </div>
+</header>
+<div class="profile-div text-center">
+    <hr>
+
+    {% load widget_tweaks %}
+
+
+
+    <div class="content-div avatar">
+        {% if not other_user.profile.avatar %}
+        {% gravatar other_user.email 150 "avatar" %}
+        {% else %}
+        <img class="gravatar" src="{{ other_user.profile.avatar.url }}" width="150" height="150" alt="avatar">
+        {% endif %}
+    </div>
+
+    <div class="profile-description">
+        {{ other_user.profile.description }}
+    </div>
+
+
+    {{ form.username.as_hidden }}
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@
 
 {% block content %}
 {% load webpack_static from webpack_loader %}
+{% load gravatar %}
 
 <header class="text-white text-center account-header">
     <div class="background"></div>
@@ -13,15 +14,135 @@
         </div>
     </div>
 </header>
-<div class="email-div text-center">
+<div class="profile-div text-center">
     <hr>
-    <form class="form-horizontal email-form">
+    {% for message in messages %}
+
+    <div class="alert alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}success{% endif %}">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+
+        {{ message }}
+
+    </div>
+    {% endfor %}
+
+    {% load widget_tweaks %}
+
+    <form enctype="multipart/form-data" method="post" action="{% url 'account' %}" class="form-horizontal email-form">
+        {% csrf_token %}
+
+
         <div class="form-group">
-            <label for="disabledInput" class="col-sm-2 control-label text-uppercase">Email :</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="disabledInput" type="text" value="{{ user.email }}" disabled>
+
+            <div class="label-div">
+                <label class="control-label text-uppercase">Avatar :</label>
+            </div>
+
+            <div class="content-div avatar">
+                {% if not user.profile.avatar %}
+                {% gravatar user.email 150 "avatar" %}
+                {% else %}
+                <img class="gravatar" src="{{ user.profile.avatar.url }}" width="150" height="150" alt="avatar">
+                {% endif %}
+                <div class="add-file">
+                    <label for="id_avatar">
+                        <i class="material-icons-new twotone-add_photo_alternate" id="avatar-label"></i>
+                    </label>
+                    {% render_field form.avatar style="display: none;" %}
+                    <a href="{% url 'remove_avatar' %}">
+                        <i class="material-icons-new twotone-delete_forever" id="avatar-label"></i>
+                    </a>
+                </div>
+                <p id="avatar-confirmation">
+                </p>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <div class="label-div">
+                <label for="id_description" class="control-label text-uppercase">Description :</label>
+            </div>
+
+            <div class="content-div">
+                {% render_field form.description class="form-control" %}
             </div>
         </div>
+
+        <div class="form-group">
+
+            <div class="label-div">
+                <label for="email" class="control-label text-uppercase">Email :</label>
+            </div>
+
+            <div class="content-div">
+                {% render_field form.email id="disabledInput" class="form-control" %}
+            </div>
+
+        </div>
+
+        {% if not backends.associated %}
+        <div class="form-group">
+
+            <div class="label-div">
+                <label class="control-label text-uppercase">Changer le mot de passe :</label>
+            </div>
+            <div class="content-div">
+                <label for="ancien" class="control-label">Ancien mot de passe:</label>
+                {% render_field form.password class="form-control" %}
+                <label for="new" class="control-label">Nouveau mot de passe:</label>
+                {% render_field form.new_pass class="form-control" %}
+                <label for="confirm-new" class="control-label">Confirmer le nouveau mot de passe:</label>
+                {% render_field form.confirm_new_pass class="form-control" %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+
+            <div class="label-div">
+                <label class="control-label text-uppercase">Recevoir les news-letter :</label>
+            </div>
+
+            <div class="content-div">
+                {% render_field form.news_letter class="form-control" %}
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <div class="label-div">
+                <!-- <label class="control-label text-uppercase">Recevoir les news-letter :</label> -->
+            </div>
+
+            <div class="content-div">
+                <button class="btn" type="submit">mettre à jour des données</button>
+            </div>
+
+        </div>
+
+        {{ form.username.as_hidden }}
     </form>
+
+
+
+    {% if users %}
+    <h3>Trouver d'autres utilisateurs :</h3>
+    <div class="users">
+        {% for a_user in users %}
+        <div class="avatar">
+            <a href="{% url 'profiles' username=a_user.user.username %}">
+                <h4>{{ a_user.user.username }}</h4>
+                {% if not a_user.avatar %}
+                {% gravatar a_user.user.email 150 "avatar" %}
+                {% else %}
+                <img class="gravatar" src="{{ a_user.avatar.url }}" width="150" height="150" alt="avatar">
+                {% endif %}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
