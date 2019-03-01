@@ -265,8 +265,6 @@ except ImportError:
     AWS_S3_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
     AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
 
-    AWS_MEDIA_DIR = 'media'
-    MEDIA_URL = AWS_S3_URL + AWS_MEDIA_DIR + '/'
     DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 
