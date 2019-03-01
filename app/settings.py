@@ -259,6 +259,8 @@ try:
     django_local.settings(locals())
 except ImportError:
     pass
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
 AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
@@ -271,15 +273,15 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-# AWS_LOCATION = 'static'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'assets'),
+]
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 
 # Gravatar
 GRAVATAR_DEFAULT_IMAGE = "identicon"
-
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
