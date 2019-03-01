@@ -260,7 +260,7 @@ try:
 except ImportError:
     pass
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
 
 AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
 AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
