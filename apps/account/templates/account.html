@@ -95,6 +95,7 @@
                 {% render_field form.new_pass class="form-control" %}
                 <label for="confirm-new" class="control-label">Confirmer le nouveau mot de passe:</label>
                 {% render_field form.confirm_new_pass class="form-control" %}
+                <div class="pass-mess" id="pass-errors"></div>
             </div>
         </div>
         {% endif %}
@@ -117,7 +118,7 @@
             </div>
 
             <div class="content-div">
-                <button class="btn" type="submit">mettre à jour des données</button>
+                <button class="btn" id="send-form" type="submit">mettre à jour des données</button>
             </div>
 
         </div>

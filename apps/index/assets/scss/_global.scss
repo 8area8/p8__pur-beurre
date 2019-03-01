@@ -6,8 +6,9 @@ html {
 }
 
 img {
-    cursor: zoom-in;
+  // cursor: zoom-in;
 }
+
 .carrot {
   cursor: pointer;
 }
@@ -29,6 +30,7 @@ hr.light {
 a {
   color: $primary;
   @include transition-all;
+
   &:hover {
     color: darken($primary, .1);
   }

@@ -3,6 +3,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 from apps.login.models import Profile
 
@@ -48,20 +49,21 @@ class ProfileForm(forms.Form):
             return
 
         password = self.cleaned_data.get('password', "")
-        if not password:
+        new_password = self.cleaned_data.get('new_pass', None)
+        if not password and not new_password:
             return
 
         if not user.check_password(password):
             messages.error(request, 'mot de passe incorrect.')
             return
 
-        new_password = self.cleaned_data.get('new_pass', None)
         if not new_password:
             messages.error(request, 'Veuillez entrer un nouveau mot de passe.')
             return
 
         user.set_password(new_password)
         user.save()
+        update_session_auth_hash(request, user)
         messages.success(request, 'Mise à jour du mot de passe.')
 
     def change_avatar(self, user, request):

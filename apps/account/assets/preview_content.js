@@ -12,5 +12,3 @@ function DisplayAvatarPath(event) {
 	var filename = files[0].name;
 	$("#avatar-confirmation").text(`image: ${filename}.`);
 }
-
-DisplayAvatarPath();

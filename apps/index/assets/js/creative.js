@@ -7,12 +7,12 @@ import "jquery-easing";
 		// run code for homepage
 		"use strict"; // Start of use strict
 
-		$("img").on("click", function () {
-			if (!$(this).hasClass("carrot")) {
-				$(".enlargeImageModalSource").attr("src", $(this).attr("src"));
-				$("#enlargeImageModal").modal("show");
-			}
-		});
+		// $("img").on("click", function () {
+		// 	if (!$(this).hasClass("carrot")) {
+		// 		$(".enlargeImageModalSource").attr("src", $(this).attr("src"));
+		// 		$("#enlargeImageModal").modal("show");
+		// 	}
+		// });
 
 		$(".research-nav").on("submit", (e) => {
 			var research = $("#logo-search").val();
