@@ -18,9 +18,9 @@ django-redis = "*"
 django-gravatar2 = "*"
 django-widget-tweaks = "*"
 pillow = "*"
-django-storages-redux = "*"
 boto = "*"
 boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 pylint = "*"
