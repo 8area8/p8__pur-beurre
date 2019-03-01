@@ -213,8 +213,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 # STATIC FILES CONFIG
 STATICFILES_DIRS = (
@@ -281,3 +279,7 @@ DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 # Gravatar
 GRAVATAR_DEFAULT_IMAGE = "identicon"
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
