@@ -262,13 +262,12 @@ except ImportError:
     AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
     AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("S3_ACCESS_SECRET")
-    AWS_S3_URL = 'https://{0}.s3.amazonaws.com/'.format(
-        AWS_STORAGE_BUCKET_NAME)
+    AWS_S3_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
     AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
 
     AWS_MEDIA_DIR = 'media'
     MEDIA_URL = AWS_S3_URL + AWS_MEDIA_DIR + '/'
-    DEFAULT_FILE_STORAGE = 'app.storage.MediaRootS3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Gravatar
