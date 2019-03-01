@@ -20,6 +20,7 @@ django-widget-tweaks = "*"
 pillow = "*"
 django-storages-redux = "*"
 boto = "*"
+boto3 = "*"
 
 [dev-packages]
 pylint = "*"
