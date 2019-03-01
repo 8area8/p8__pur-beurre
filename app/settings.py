@@ -267,7 +267,7 @@ except ImportError:
 
     AWS_MEDIA_DIR = 'media'
     MEDIA_URL = AWS_S3_URL + AWS_MEDIA_DIR + '/'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 
 # Gravatar
