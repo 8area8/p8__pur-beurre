@@ -18,6 +18,8 @@ django-redis = "*"
 django-gravatar2 = "*"
 django-widget-tweaks = "*"
 pillow = "*"
+django-storages-redux = "*"
+boto = "*"
 
 [dev-packages]
 pylint = "*"

@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'django_gravatar',
     # https://pypi.org/project/django-widget-tweaks/
     'widget_tweaks',
+    # https://github.com/jschneier/django-storages
+    'storages',
     # PERSONNAL APPS
     'apps.index',
     'apps.login',
@@ -257,7 +259,16 @@ try:
     django_local = importlib.import_module("app.local_settings")
     django_local.settings(locals())
 except ImportError:
-    pass
+    AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
+    AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("S3_ACCESS_SECRET")
+    AWS_S3_URL = 'https://{0}.s3.amazonaws.com/'.format(
+        AWS_STORAGE_BUCKET_NAME)
+    AWS_S3_HOST = AWS_S3_URL
+
+    AWS_MEDIA_DIR = 'media'
+    MEDIA_URL = AWS_S3_URL + AWS_MEDIA_DIR + '/'
+    DEFAULT_FILE_STORAGE = 'app.storage.MediaRootS3BotoStorage'
 
 
 # Gravatar
