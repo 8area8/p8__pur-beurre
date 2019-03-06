@@ -25,7 +25,7 @@ BASE_DIR = Path().resolve()
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(n($=^94n=1t%u4rozyrw-h_0za&vz9fbag1!+yv=)2#aviepb'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # DJANGO PLUGINS
+    # https://github.com/owais/django-webpack-loader
     'webpack_loader',
+    # https://github.com/python-social-auth/social-app-django
     'social_django',
     # https://github.com/twaddington/django-gravatar
     'django_gravatar',
@@ -112,11 +114,11 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Email confirmation
+# https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
@@ -128,13 +130,15 @@ EMAIL_USE_TLS = True
 
 
 # Logins
+# https://docs.djangoproject.com/fr/2.1/topics/auth/default/
 
 LOGIN_URL = '/authenticate/signup'
 LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_URL = 'logout'
 
 
-# Google auth
+# Google authentication
+# https://github.com/python-social-auth/social-app-django
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_PASS")
@@ -163,6 +167,7 @@ DATABASES = {
 
 
 # Django redis
+# https://realpython.com/caching-in-django-with-redis/
 
 CACHES = {
     "default": {
@@ -222,7 +227,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
 
 
-# Webpack config
+# Webpack configuration
+# https://github.com/owais/django-webpack-loader
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -236,7 +242,8 @@ WEBPACK_LOADER = {
 }
 
 
-# Celery config
+# Celery configuration
+# http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 
 if not DEBUG:
     CELERY_BROKER_URL = os.getenv('REDIS_URL')
@@ -247,7 +254,8 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
 
-# Local / production settings
+# Local - production settings
+# https://github.com/heroku/django-heroku
 
 try:
     django_local = importlib.import_module("app.local_settings")
@@ -257,6 +265,7 @@ except ImportError:
 
 
 # AWS S3 Storage settings
+# https://github.com/jschneier/django-storages
 
 AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
 AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
@@ -273,5 +282,6 @@ DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 
 # Gravatar config
+# https://github.com/twaddington/django-gravatar
 
 GRAVATAR_DEFAULT_IMAGE = "identicon"
