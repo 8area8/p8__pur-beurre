@@ -100,13 +100,12 @@ class FilterProduct:
             url = cls.return_(product["url"])
             name = cls.return_(product["product_name"], test_length=True)
             categories = cls.return_(product["categories"])
+            nutriscore = cls.return_(product["nutrition_grade_fr"])
             image_nutrition = cls.return_(product["image_nutrition_url"])
 
-            def test_in(value):
-                """Tests for nutriscore."""
-                return value in ("a", "b", "c", "d", "e") and len(value) == 1
-
-            nutriscore = cls.return_(product["nutrition_grade_fr"], test_in)
+            abcde = ("a", "b", "c", "d", "e")
+            if nutriscore not in abcde or len(nutriscore) != 1:
+                raise ValueError
 
         except (KeyError, ValueError):
             return None
@@ -147,7 +146,7 @@ class FilterProduct:
     @classmethod
     def has_good_length(cls, value):
         """Raise ValueError if length is too high."""
-        if len(value) <= 150:
+        if len(value) >= 150:
             raise ValueError
 
 

@@ -111,10 +111,9 @@ class ProductsGeneratorTestCase(TransactionTestCase):
 
     def setUp(self):
         """Set up function."""
-        pass
 
-    def test_create_DataError(self):
-        """Test _create function."""
+    def test_create_data_error(self):
+        """Test create function."""
         filtered = {
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
@@ -126,12 +125,12 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "stores": "auchan",
             "image_nutrition": "example.com",
         }
-        prodgen._create(filtered)
+        prodgen.create(filtered)
         self.assertEqual(len(Product.objects.all()), 0)
         self.assertEqual(len(Category.objects.all()), 3)
 
-    def test_create_IntegrityError(self):
-        """Test _create function."""
+    def test_create_integrity_error(self):
+        """Test create function."""
         filtered = {
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
@@ -143,14 +142,14 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "stores": "auchan",
             "image_nutrition": "example.com",
         }
-        prodgen._create(filtered)
+        prodgen.create(filtered)
         filtered["categories"] = "fooone,footwo"
-        prodgen._create(filtered)
+        prodgen.create(filtered)
         self.assertEqual(len(Product.objects.all()), 1)
         self.assertEqual(len(Category.objects.all()), 2)
 
     def test_create_good_result(self):
-        """Test _create function."""
+        """Test create function."""
         filtered = {
             "photo_url": "example.com",
             "open_food_fact_url": "example.com",
@@ -162,7 +161,7 @@ class ProductsGeneratorTestCase(TransactionTestCase):
             "stores": "auchan",
             "image_nutrition": "example.com",
         }
-        prodgen._create(filtered)
+        prodgen.create(filtered)
         self.assertTrue(Product.objects.filter(name="foo").exists())
         self.assertEqual(len(Category.objects.all()), 3)
 
@@ -175,26 +174,30 @@ class ProductsGeneratorTestCase(TransactionTestCase):
         """
         def mock_requests():
             """Mock json."""
-            json = {"products": [{
-                    "image_url": "example.com",
-                    "url": "example.com",
-                    "product_name": "foo",
-                    "categories": "fooone,footwo,foothree",
-                    "nutrition_grade_fr": "a",
-                    "link": "example.com",
-                    "generic_name": "",
-                    "stores": "auchan",
-                    "image_nutrition_url": "example.com",
-                    "xxx": "xxx",
-                    "yyy": "yyy",
-                    "zzz": "zzz"
-                    }]}
-            return json
+            value = {"products":
+                     [{
+                         "image_url": "example.com",
+                         "url": "example.com",
+                         "product_name": "foo",
+                         "categories": "fooone,footwo,foothree",
+                         "nutrition_grade_fr": "a",
+                         "link": "example.com",
+                         "generic_name": "",
+                         "stores": "auchan",
+                         "image_nutrition_url": "example.com",
+                         "xxx": "xxx",
+                         "yyy": "yyy",
+                         "zzz": "zzz"
+                     }]}
+            return value
+
         httpretty.register_uri(
             httpretty.GET,
             "https://example.com",
             body=json.dumps(mock_requests()))
+
         _generate_from_a_page.apply(args=("https://example.com", {})).get()
+
         self.assertTrue(Product.objects.filter(name="foo").exists())
 
 
@@ -267,22 +270,22 @@ class ProductViewsTestCase(TestCase):
         product = Product.objects.get(name="oreo2")
         Substitute.objects.create(user=user, base_product=base_product,
                                   substituted=product)
-        response = self.client.post(f"{self.substitute_url}",
-                                    {"base_product": base_product,
-                                     "product": product,
-                                     "next": self.substitute_url})
+        self.client.post(f"{self.substitute_url}",
+                         {"base_product": base_product,
+                          "product": product,
+                          "next": self.substitute_url})
         self.assertEqual(len(Substitute.objects.all()), 1)
 
-    def test_save_substitute_OK(self):
+    def test_save_substitute_ok(self):
         """Test informations."""
-        user = User.objects.get(email="bar@example.com")
+        User.objects.get(email="bar@example.com")
         self.client.login(email="bar@example.com", password='super-secret')
         base_product = Product.objects.get(name="oreo")
         product = Product.objects.get(name="oreo2")
-        response = self.client.post(f"{self.substitute_url}",
-                                    {"base_product": base_product,
-                                     "product": product,
-                                     "next": self.substitute_url})
+        self.client.post(f"{self.substitute_url}",
+                         {"base_product": base_product,
+                          "product": product,
+                          "next": self.substitute_url})
         self.assertEqual(len(Substitute.objects.all()), 1)
 
 
@@ -297,8 +300,8 @@ class SubstitutesAlgoTestCase(TestCase):
         for index in range(10):
             if index % 2 == 0:
                 nutriscore += 1
-            product = Product.objects.create(name=f"prod-{index}",
-                                             nutriscore=chr(nutriscore))
+            Product.objects.create(name=f"prod-{index}",
+                                   nutriscore=chr(nutriscore))
         Product.objects.get(
             name="prod-0").categories.add(*Category.objects.all()[:3])
         Product.objects.get(
@@ -398,7 +401,7 @@ class SubstitutesAlgoTestCase(TestCase):
         product = Product.objects.get(name="prod-4")
         substitutes = findsub.run(product)
         self.assertEqual(len(substitutes), 2)
-        one, two = substitutes
+        one, _ = substitutes
         self.assertEqual(one.nutriscore, "nutriscore-a.png")
 
     def test_disable_doubles(self):
@@ -406,9 +409,9 @@ class SubstitutesAlgoTestCase(TestCase):
         user = User.objects.create_user(username="foo", password="secret")
         product = Product.objects.get(name="prod-0")
         substituted = Product.objects.get(name="prod-1")
-        substitute = Substitute.objects.create(base_product=product,
-                                               substituted=substituted,
-                                               user=user)
+        Substitute.objects.create(base_product=product,
+                                  substituted=substituted,
+                                  user=user)
         substitutes = [substituted]
         disable_doubles(substitutes, user)
         self.assertTrue(substitutes[0].double)
