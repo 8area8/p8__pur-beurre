@@ -114,7 +114,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mbriolet.ma@gmail.com"
-EMAIL_HOST_PASSWORD = "vrnovOYPDWm12"
+EMAIL_HOST_PASSWORD = os.getenv("PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -239,14 +239,6 @@ if not DEBUG:
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
-
-# REDIS CONFIG
-# CACHES = {
-#     "default": {
-#         "BACKEND": "redis_cache.RedisCache",
-#         "LOCATION": os.environ.get('REDIS_URL'),
-#     }
-# }
 
 # LOCAL SETTINGS
 try:
