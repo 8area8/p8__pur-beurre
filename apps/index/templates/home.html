@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-{% load webpack_static from webpack_loader %}
-<header class="masthead text-center text-white d-flex">
+<!-- {% load webpack_static from webpack_loader %} -->
+{% load static %}
+<header class="masthead text-center text-white d-flex" style="background-image: url({% static 'header.jpg' %})">
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -76,13 +77,13 @@
         <div class="row no-gutters">
             <div class="col-lg-6 col-sm-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    <img class="img-colette img-fluid mb-3" src="{% webpack_static 'colette.jpg' %}" alt="colette">
+                    <img class="img-colette img-fluid mb-3" src="{% static 'colette.jpg' %}" alt="colette">
                     <h3 class="text-colette mb-3">Colette</h3>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6 text-center">
                 <div class="service-box mt-5 mx-auto">
-                    <img class="img-remy img-fluid mb-3" src="{% webpack_static 'remy.jpg' %}" alt="remy">
+                    <img class="img-remy img-fluid mb-3" src="{% static 'remy.jpg' %}" alt="remy">
                     <h3 class="text-remy mb-3">Remy</h3>
                 </div>
             </div>

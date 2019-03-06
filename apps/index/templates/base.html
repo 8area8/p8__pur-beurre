@@ -20,6 +20,7 @@
 </head>
 
 <body class="d-flex flex-column">
+    {% load static %}
     {% load webpack_static from webpack_loader %}
     {% include 'login_modal.html' %}
 
@@ -41,8 +42,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="/"><img src="{% webpack_static 'logo.png' %}" alt="Logo"
-                    height="42" width="42"> Pur Beurre</a>
+            <a class="navbar-brand js-scroll-trigger" href="/"><img src="{% static 'logo.png' %}" alt="Logo" height="42"
+                    width="42"> Pur Beurre</a>
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navBarToogle"
                 aria-controls="navBarToogle" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +66,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="{% url 'substitutes' %}" id="logo-aliments"><img
-                                class="nav-icon icon-white carrot" src="{% webpack_static 'carrot.png' %}" alt="my aliments"
+                                class="nav-icon icon-white carrot" src="{% static 'carrot.png' %}" alt="my aliments"
                                 height="38" width="38"></a>
                     </li>
                     <li class="nav-item">
@@ -93,9 +94,11 @@
         </div>
     </footer>
     <span id="homesite-flag" style="display: none" />
-    <script>window.product_names_url = `/autocomplete/get_names`</script>
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'index' 'js' %}
+    <script>
+        window.product_names_url = `/autocomplete/get_names`
+    </script>
+    <!-- {% load render_bundle from webpack_loader %} -->
+    <script type="text/javascript" src="{% static 'index.js' %}"></script>
 </body>
 
 </html>

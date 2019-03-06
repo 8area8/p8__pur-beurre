@@ -59,9 +59,9 @@ INSTALLED_APPS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
-    'social_core.backends.google.GoogleOpenId',  # for Google authentication
-    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
     # PERSONNAL AUTHENTICATION
     'apps.login.authenticate.EmailAuthenticate'
 ]
@@ -115,7 +115,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
-# EMAIL CONFIGURATION
+
+# Email confirmation
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = "mbriolet.ma@gmail.com"
 EMAIL_HOST = "smtp.gmail.com"
@@ -124,27 +126,27 @@ EMAIL_HOST_PASSWORD = os.getenv("GOOGLE_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# LOGINS
+
+# Logins
+
 LOGIN_URL = '/authenticate/signup'
 LOGIN_REDIRECT_URL = '/account/'
 LOGOUT_URL = 'logout'
 
-# GOOGLE THINGS
+
+# Google auth
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_PASS")
-# Google OAuth2 (google-oauth2)
 SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile'
-]
-# Google+ SignIn (google-plus)
+    'https://www.googleapis.com/auth/userinfo.profile']
 SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
     'https://www.googleapis.com/auth/plus.login',
     'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile'
-]
+    'https://www.googleapis.com/auth/userinfo.profile']
 SOCIAL_AUTH_GOOGLE_OAUTH2_USE_DEPRECATED_API = True
 SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
 
@@ -152,14 +154,16 @@ SOCIAL_AUTH_GOOGLE_PLUS_USE_DEPRECATED_API = True
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# we only need the engine name, as heroku takes care of the rest
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql'
     }
 }
 
-#  Django redis
+
+# Django redis
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -213,17 +217,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-
-# STATIC FILES CONFIG
-STATICFILES_DIRS = (
-    Path(BASE_DIR, 'assets'),
-)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# os.makedirs(STATIC_ROOT, exist_ok=True)
 
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
 
-# WEBPACK CONFIG
+
+# Webpack config
+
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
@@ -235,55 +238,45 @@ WEBPACK_LOADER = {
     }
 }
 
-# CELERY CONFIG
+
+# Celery config
+
 if not DEBUG:
     CELERY_BROKER_URL = os.getenv('REDIS_URL')
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
     CELERY_BROKER_POOL_LIMIT = 0
-
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
-# REDIS CONFIG
-# CACHES = {
-#     "default": {
-#         "BACKEND": "redis_cache.RedisCache",
-#         "LOCATION": os.environ.get('REDIS_URL'),
-#     }
-# }
 
-# LOCAL SETTINGS
+# Dev/production settings
+
 try:
     django_local = importlib.import_module("app.local_settings")
     django_local.settings(locals())
 except ImportError:
-    pass
+    django_heroku.settings(locals(), staticfiles=True)
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
+# AWS S3 Storage settings
 
 AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
 AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("S3_ACCESS_SECRET")
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
-AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
+# AWS_DEFAULT_ACL = None
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
+AWS_LOCATION = 'static/bundles/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
 
-AWS_LOCATION = 'static'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'assets'),
-]
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 DEFAULT_FILE_STORAGE = 'app.storage.MediaStorage'
 
 
-# Gravatar
+# Gravatar config
+
 GRAVATAR_DEFAULT_IMAGE = "identicon"
