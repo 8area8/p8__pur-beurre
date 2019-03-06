@@ -217,9 +217,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# os.makedirs(STATIC_ROOT, exist_ok=True)
-
 PUBLIC_DIR = Path(BASE_DIR, 'public')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(PUBLIC_DIR, 'media')
@@ -250,7 +247,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
 
-# Dev/production settings
+# Local / production settings
 
 try:
     django_local = importlib.import_module("app.local_settings")
@@ -265,8 +262,6 @@ AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")
 AWS_ACCESS_KEY_ID = os.getenv("S3_ACCESS_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("S3_ACCESS_SECRET")
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
-# AWS_DEFAULT_ACL = None
 
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
 AWS_LOCATION = 'static/'
