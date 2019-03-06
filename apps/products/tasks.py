@@ -96,28 +96,25 @@ class FilterProduct:
         Main method.
         """
         try:
-            image = product["image_url"]
-            url = product["url"]
-            name = product["product_name"]
-            categories = product["categories"]
-            nutriscore = product["nutrition_grade_fr"]
-            image_nutrition = product["image_nutrition_url"]
-            assert image_nutrition
-            assert url
-            assert image
-            assert categories
-            assert name
-            assert len(name) <= 150
-            name = name.replace("/", "-")  # avoid url bug.
-            assert nutriscore in ("a", "b", "c", "d", "e")
-            assert len(nutriscore) == 1
-        except (KeyError, AssertionError):
+            image = cls.return_(product["image_url"])
+            url = cls.return_(product["url"])
+            name = cls.return_(product["product_name"], test_length=True)
+            categories = cls.return_(product["categories"])
+            image_nutrition = cls.return_(product["image_nutrition_url"])
+
+            def test_in(value):
+                """Tests for nutriscore."""
+                return value in ("a", "b", "c", "d", "e") and len(value) == 1
+
+            nutriscore = cls.return_(product["nutrition_grade_fr"], test_in)
+
+        except (KeyError, ValueError):
             return None
 
         filtered = {
             "photo_url": image,
             "open_food_fact_url": url,
-            "name": name,
+            "name": name.replace("/", "-"),  # avoid path error.
             "categories": categories,
             "nutriscore": nutriscore,
             "image_nutrition": image_nutrition,
@@ -127,6 +124,31 @@ class FilterProduct:
             "stores": product.get("stores", ""),
         }
         return filtered
+
+    @classmethod
+    def return_(cls, value, *methods, test_index=True, test_length=False):
+        """Return the value or raise ValueError."""
+        if test_index:
+            cls.is_empty(value)
+        if test_length:
+            cls.has_good_length(value)
+
+        for method in methods:
+            method(value)
+
+        return value
+
+    @classmethod
+    def is_empty(cls, value):
+        """Raise ValueError if empty."""
+        if not value:
+            raise ValueError
+
+    @classmethod
+    def has_good_length(cls, value):
+        """Raise ValueError if length is too high."""
+        if len(value) <= 150:
+            raise ValueError
 
 
 class CategoriesHandler:
