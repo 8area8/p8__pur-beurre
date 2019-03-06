@@ -20,7 +20,6 @@ from django.db import IntegrityError
 from django.db.utils import DataError
 from django.core.exceptions import ObjectDoesNotExist
 from celery import shared_task
-import celery
 
 from .models import Product, Category, Substitute
 
@@ -58,7 +57,7 @@ class ProductsGenerator():
             model.objects.all().delete()
 
     @classmethod
-    def _create(cls, product):
+    def create(cls, product):
         """Create the product and the categories."""
         category_names = product.pop('categories')
         categories = CategoriesHandler.create_categories(category_names)
@@ -84,7 +83,7 @@ def _generate_from_a_page(url, params):
     for product in products:
         filtered_product = FilterProduct.filtered(product)
         if filtered_product:
-            ProductsGenerator._create(filtered_product)
+            ProductsGenerator.create(filtered_product)
 
 
 class FilterProduct:

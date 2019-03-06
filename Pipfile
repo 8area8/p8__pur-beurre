@@ -15,6 +15,7 @@ requests = "*"
 social-auth-app-django = "*"
 httpretty = "*"
 django-redis = "*"
+pylint-django = "*"
 
 [dev-packages]
 pylint = "*"
