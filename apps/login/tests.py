@@ -70,14 +70,19 @@ class SignupTestCase(TestCase):
 
     def setUp(self):
         """Set up function."""
+        def return_dict(username, email, pass1, pass2):
+            """Return a dict."""
+            return {"username": username, "email": email,
+                    "password1": pass1, "password2": pass2}
+
+        password = "vrnvrnvrn"
+        passwords = [password, password]
+
         self.client = Client()
         self.url = '/authenticate/signup'
-        self.good_post = {"username": "foo", "email": "foo@example.com",
-                          "password1": "vrnvrnvrn", "password2": "vrnvrnvrn"}
-        self.wrong_email = {"username": "bar", "email": "foo@example.com",
-                            "password1": "vrnvrnvrn", "password2": "vrnvrnvrn"}
-        self.wrong_name = {"username": "foo", "email": "bar@example.com",
-                           "password1": "vrnvrnvrn", "password2": "vrnvrnvrn"}
+        self.good_post = return_dict("foo", "foo@example.com", *passwords)
+        self.wrong_email = return_dict("bar", "foo@example.com", *passwords)
+        self.wrong_name = return_dict("foo", "bar@example.com", *passwords)
 
     def test_GET_request(self):
         """Test login function."""

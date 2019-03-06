@@ -253,7 +253,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
-
 # Local - production settings
 # https://github.com/heroku/django-heroku
 

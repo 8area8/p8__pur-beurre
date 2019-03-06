@@ -21,6 +21,7 @@ pillow = "*"
 boto = "*"
 boto3 = "*"
 django-storages = "*"
+pylint-django = "*"
 
 [dev-packages]
 pylint = "*"
