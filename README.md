@@ -1,10 +1,11 @@
 
 # Pur Beurre application
 
-![version](https://img.shields.io/badge/version-1.1-blue.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/python-3.6-ligh.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/project-web_app-orange.svg?longCache=true&style=flat-square)
+![version](https://img.shields.io/badge/version-1.2-blue.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/python-3.6-ligh.svg?longCache=true&style=flat-square) ![version](https://img.shields.io/badge/project-web_app-orange.svg?longCache=true&style=flat-square)
 
 ## News
 
+- 07/03/2019 : release **1.2** done. User account improvements (avatar, description, public page...)  
 - 06/11/2018 : release **1.1** done. The substitute save button is disabled if the user already has it.
 - 06/11/2018 : release **1.0** done. All features are implemented.  
 
